@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="../static/styles/header.css"/>
+		<link rel="stylesheet" href="../static/styles/body.css"/>
+		<link rel="stylesheet" href="../static/styles/Smain.css"/>
+		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
+		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
+		<script src="../static/scripts/s-login.js"></script>
+
+<style>
+.notification {
+        position: absolute;top: 95px;width: 200px;
+        line-height: 1px;z-index: 11;left: 45px;
+        text-align: center;
+        color: red;height: 30px; background-color:#add8e6;border-radius: 5px;
+}
+</style>
+
+	</head>
+	<body>
+		<header style="display: block;"class="top">
+			<div class="title">
+				<p style="color: white;">Echetra for Engineers</p>
+			</div>
+			<div class="login">
+				<p>login</p>
+			</div>
+			<div class="signUp">
+				<p>sign up<p>
+			</div>
+		</header>
+		<div class="fsignup">
+
+			<div class="header">
+                                <h1>Sign Up</h1>
+                        </div>
+
+			<div class="main">
+				{% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                <div class="notification">
+                                        <p>{{ messages[0] }}!!!</p>
+                                </div>
+                                {% endif %}
+                                {% endwith %}
+			<form method="POST" action="/signlauth">
+                                <span>
+                                        <i class="fa fa-user"></i>
+                                        <input type="text" placeholder="Username" name="username">
+                                </span><br>
+                                <span>
+                                        <i class="fa fa-lock"></i>
+                                        <input type="password" placeholder="New password" name="passwd1">
+                                </span><br>
+				<span>
+					<i class="fa fa-lock"></i>
+					<input type="password" placeholder="Confirm password" name="passwd2">
+				</span>
+                                <button type="submit" class="btn">sign up</button>
+                        </form>
+			</div>
+		</div>
+
+	</body>
+</html>

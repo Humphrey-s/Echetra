@@ -1,9 +1,11 @@
 $(document).ready(function () {
 
 	$(".login").click(function () {
-		$(".f-login").css("display", "block")
+		window.location = "/login"
+		alert("h")
 	});
 
 	$(".signUp").click(function () {
-                alert("Hi")                               });
+                window.location = "/signUp"
+	});
 });

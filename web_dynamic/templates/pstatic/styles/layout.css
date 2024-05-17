@@ -1,0 +1,46 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+
+body, HTML {
+	overflow: hidden;
+	height: 100vh;
+}
+
+.mainwrapper {
+	display: flex;
+	direction: row;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	background-color: grey;
+}
+
+.Snavigation {
+	width: 100px;
+	justify-content: start;
+	height: 100%;
+	background-color: #1c2841;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	width: 93%;
+	height: 120%;
+	background-color: brown;
+	overflow-y: auto;
+}
+
+.Tnavigation {
+	position: absolute;
+	top: 0px;
+	height: 50px;
+	width: 100%;
+	background-color: #000036;
+	margin-left: 0px;
+	position: fixed;
+	box-shadow: 0px 0px 2px 0px;
+}

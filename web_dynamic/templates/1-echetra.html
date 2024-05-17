@@ -3,26 +3,151 @@
 	<head>
 		<link rel="stylesheet" href="../static/styles/header.css"/>
 		<link rel="stylesheet" href="../static/styles/body.css"/>
+		<link rel="stylesheet" href="../static/styles/hack.css"/>
+		<link rel="stylesheet" href="../static/styles/timeline.css"/>
 		<link rel="stylesheet" href="../static/styles/div.css"/>
+		<link rel="stylesheet" href="../static/styles/side.css"/>
+		<link rel="stylesheet" href="../static/styles/nav.css"/>
+		<link rel="stylesheet" href="../static/styles/templates.css"/>
+		<link rel="stylesheet" href="../static/styles/home.css"/>
+		<link rel="stylesheet" href="../static/styles/2-project.css"/>
 		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
 		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
 		<script src="../static/scripts/s-login.js"></script>
+		<script src="../static/scripts/projects.js"></script>
 	</head>
 	<body>
 		<header class="top">
-			<div class="title">
-				<p style="color: white;">Echetra for Engineers</p>
-			</div>
-			<div class="login">
-				<p>login</p>
-			</div>
-			<div class="signUp">
-				<p>sign up</p>
-			</div>
+			 <div class="title">
+                                <p style="color: white;">Echetra for Engineers</p>
+                        </div>
 		</header>
-		<section>
 
+		<section class="timeline">
+			<button class="cbtn" style="border: None;background: None"><div class="createP">
+				<i class="fa-solid fa-plus fa-xl"></i>
+				<h2>Create Project</h2>
+			</div></button>
+
+			<div id="statistics">
+				<h3 id="stats">STATISTICS</h3>
+				<div class="month">
+				</div>
+				<div class="stars">
+				</div>
+				<div class="finished">
+				</div>
+			</div>
+			<div class="friends">
+				<h3 id="suggested">SUGGESTED FRIENDS</h3>
+				<button style="border: None;background: None"><h4 id="Sall">See all</h4></button>
+				<div id="friends">
+				</div>
+			</div>
+			<div class="notification">
+				<h3 id="notification">NOTIFICATION</h3>
+				<button style="border: None;background: None"><h4 id="Sall2">See all</h4></button>
+			</div>
 		</section>
+		<main>
+<style>
+#Hcurrent{position: absolute;font-size: 8px;top: 40px;left: 10px;text-align: center;line-height: 8px;width: 110px;border-radius: 10px;height: 25px;box-shadow: 0px 0px 3px 0px;background-color: #648c11;}
+#Finished {position: absolute;font-size: 8px;left: 150px;text-align: center;line-height: 8px;top: 40px;width: 95px;border-radius: 10px;height: 25px;box-shadow: 0px 0px 3px 0px;background-color: #648c11;}
+#Hstudy{position: absolute;font-size: 8px;left: 280px;text-align: center;line-height: 8px;top: 40px;width: 100px;border-radius: 10px;height: 25px;box-shadow: 0px 0px 3px 0px;background-color: #648c11;}
+/*#board {position: absolute;top: 0;height: 100%; width: 200px;border-right: 0.5px solid grey;
+}*/
+</style>
+<style>
+.project {display: None;}
+</style>
+			<section class="main" id="projects">
 
+				<!--<section class="home">
+					<h1>Home</h1><br>
+					<div id="Hcurrent">
+						<h2>Current Projects</h2>
+					</div>
+					<div id="Finished">
+						<h2>Finished</h2>
+					</div>
+					<div id="Hstudy">
+						<h2>Study Rooms</h2>
+					</div>
+				</section -->
+	
+				<section class="project">
+					<div id="board">
+					</div>
+				</section>
+			</section>
+
+			<aside class="aside">
+				<div id="menu">
+					<div class="inner">
+<style>
+.inner i {color: #f8f8ff;}#dashboard,#project,#studyroom,#community,#chess,#settings, #profile { border-radius: 50%;}
+#project i, #studyroom i, #chess i, #profile i, #settings i {left: 13px;}
+</style>
+						<div id="dashboard">
+							<i class="fa-solid fa-house fa-xl" ></i>
+						</div>
+						<div id="project">
+							<i class="fa-solid fa-bars-progress fa-xl"></i>
+						</div>
+						<div id="studyroom">
+							<i class="fa-solid fa-globe fa-xl"></i>
+						</div>
+						<div id="community">
+							<i class="fa-solid fa-people-arrows fa-xl"></i>
+						</div>
+						<div id="chess">
+							<i class="fa-solid fa-chess fa-xl"></i>
+						</div>
+						<div id="profile">
+							<i class="fa-solid fa-user fa-xl"></i>
+						</div>
+						<div id="settings">
+							<i class="fa-solid fa-gear fa-xl"></i>
+						</div>
+					</div>
+			</aside>
+
+
+		</main>
+		 <div id="cypro">
+			 <button id=x><i class="fa-solid fa-x fa-2xl"></i></button>
+			 <h3 id="temp">Templates</h3>
+			 <div class="templates">
+				 <a href="#" id="Tm"><div class="Tmanagement">
+						 <img src=""></img>
+						 <div class="dlower">
+							 <h3>Task management</h3>
+						 </div>
+			</div></a>
+			 <div class="pname">
+				 <form style="display: None", id="pdatantes" method="POST" action="/dashboard/create9project">
+					 <input type="hidden" id="var1" name="id" value=""/>
+					 <input type="hidden" id="var2" name="name" value=""/>
+					 <input type="hidden" id="var3" name="" value=""/>
+				 </form>
+				 <span id="pname"><h4>Project Name</h4></span>
+				 <input id="NewPname" type="text" required/>
+				 <div id="category">
+					 <h3>Category</h3>
+				
+					 <span id="web">Web_development</span>
+					 <input id="web_input"type="radio" name="pcategory" value="webDevelopment"></input>
+					 <span id="art">Art</span>
+					 <input id="art_input" type="radio" name="pcategory" value="art"></input>
+					 <span id="eng">Engineering</span>
+					 <input id="eng_input" type="radio" name="pcategory" value="engineering"></input>
+					 <span id="Other">Other</span>
+					 <input id="other_input" type="radio" name="pcategory" value="other"></input>
+					 <button id="bcreate"><div>Create</div></button>
+				 </div>
+				 </form>
+			 </div>
+			 </div>
+                 </div>
 	</body>
 </html>

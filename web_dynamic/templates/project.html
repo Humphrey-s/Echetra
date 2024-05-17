@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="../static/pstatic/styles/layout.css" rel="stylesheet"/>
+		<link href="../static/pstatic/styles/header.css" rel="stylesheet"/>
+		<link href="../static/pstatic/styles/main.css" rel="stylesheet"/>
+		<link href="../static/pstatic/styles/tasks.css" rel="stylesheet"/>
+		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
+		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
+		<script src="../static/pstatic/scripts/events.js"></script>
+		<script src="../static/pstatic/scripts/tasks.js"></script>
+	</head>
+	<body>
+		<div class="mainwrapper">
+			<div class="Snavigation">
+			</div> 
+
+			<div class="main">
+				<header class="Tnavigation">
+					<div id="Tlogo">
+					</div>
+					<div id="Tdetal">
+						<div class="pname">
+<script type="text/javascript">
+	var projectName = "{{ project }}";
+	var projectId = "{{ id }}";
+</script>
+							<p style="color:#9dc209; font-family: Arial;position:relative;font-size:16px;left:20px;top: 3px;">
+							{{ project }}
+							</p>
+						</div>
+
+						<div class="headers">
+<style>
+.headers i {position: absolute;color: #f8f4ff;}#Hboard i {position: absolute;left: 50px;top:5px;color:#cae00d;}
+#Htasks i {position: absolute;left: 130px;top:5px;color:#cae00d;}#HTodo i {position: absolute;left: 210px;top:5px;color:#cae00d;}
+#Hgantt i {position: absolute;left: 290px;top:5px;color:#cae00d;}#Hcalender i {position: absolute;left: 380px;top:5px;color:#cae00d;}
+.tasks {position: absolute; top: 170px;}
+</style>
+							<div id="Hboard">
+								<i class="fa-solid fa-list"></i>
+								<!--div class="tooltip" id="Bidentifier">Board</div-->
+							</div>
+							<div id="Htasks">
+								<i class="fa-solid fa-list-check"></i>
+								<!--div class="tooltip" id="Tidentifier">Tasks</div-->
+							</div>
+							<div id="HTodo">
+								<i class="fa-solid fa-bars"></i>
+								<!--div class="tooltip" id="TDidentifier">To do</div-->
+							</div>
+							<div id="Hgantt">
+								<i class="fa-solid fa-chart-simple"></i>
+								<!--div class="tooltip" id="Gidentifier">GANTT</div-->
+							</div>
+							<div id="Hcalender">
+								<i class="fa-regular fa-calendar"></i>
+								<!--div class="tooltip" id="Cidentifier">Calender</div-->
+							</div>
+						</div>
+					</div>
+				</header>
+
+				<div class="Mboard">
+					<h3 style="color: white;">Board</h3>
+				</div>
+
+				<div class="MTasks" style="color: white">
+					<div class="Add">
+						<div id="Tdone">
+							<h3>DONE</h3>
+						</div>
+						<div id="Tname">
+							<h3>TASK NAME</h3>
+						</div>
+						<div id="Tassignee">
+							<h3>ASSIGNEE</h3>
+						</div>
+						 <div id="Tstats">
+                                                        <h3>STATUS</h3>
+                                                </div>
+						 <div id="Tpercentage">
+                                                        <h3>%</h3>
+                                                </div>
+						 <div id="Tpriority">
+                                                        <h3>PRIORITY</h3>
+                                                </div>
+						 <div id="Tdue">
+                                                        <h3>DUE</h3>
+                                                </div>
+					</div>
+					<div class="Ttasks">
+						{% for task in tasks %}
+								<div id="task">
+									<label class="done" id="done">
+									<input class="completed" type="checkbox" name="${taskId}">
+									<span></span>
+									</input>
+									</label>
+									<div id="name">
+										<p>{{ task.name }}</p>
+									</div>
+								</div>
+						{% endfor %}
+					</div>
+					<div class="createTask">
+						<div class="AddTButton">
+						<div id="circleplus"><i id="downPlus" class="fa-solid fa-plus fa-xl"></i></div>
+						<p id="placeHold">Add Task</p>
+						</div>
+						<div class="AddInput">
+							<div id="circleplus2"><i id="downPlus" class="fa-solid fa-plus fa-xl"></i></div>
+							<input class="downAdd" type="text" placeholder="Add Task" name="name" autocomplete="off"><span></span></input>
+						</div>
+					</div>
+				</div>
+				<div class="MTodo">
+					<h3>To do</h3>
+                                </div>
+				<div class="Mgantt">
+					<h3>Gantt</h3>
+                                </div>
+				<div class="Mcalender">
+					<h3>Calender</h3>
+                                </div>
+
+		</div>
+	</body>
+</html>

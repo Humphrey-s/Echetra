@@ -1,0 +1,15 @@
+html {
+	overflow-x: hidden;
+}
+
+body {
+	overflow-x: hidden;
+	height: 100vh;
+}
+
+
+#menu {
+	top: 28.5px;
+	width: 74px;
+	position: fixed;
+}

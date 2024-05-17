@@ -1,0 +1,52 @@
+
+#projects {
+	position: absolute;
+	top: 30px;
+	left: 72px;
+	height: 100%;
+	width: 70%;
+	background-color: #253529;
+	z-index: 3;
+	border-right: 0.5px solid grey;
+}
+
+#projects h4 {
+	position: relative;
+	left: 10px;
+	font-size: 24px;
+}
+
+
+#hackathons {
+	width: 300px;
+	height: 430px;
+	border: 1px solid grey;
+	text-align: center;
+	background: white;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	box-shadow: 0px 0px 5px 0px grey;
+}
+
+.hackathon0 {
+	position: absolute;
+	top: 93px;
+	left: 350px;
+}
+
+.hackathon2 {
+	position: absolute;
+	top: 93px;
+	left: 700px;
+}
+
+.hackathon3 {
+	position: absolute;
+	top: 100;
+	left: 350px;
+}
+#hackathon4 {
+	top: 300px;
+	left: 320px
+}

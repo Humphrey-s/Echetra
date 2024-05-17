@@ -1,0 +1,114 @@
+#dashboard:hover, #project:hover,
+#community:hover,#chess:hover,
+#studyroom:hover,#profile:hover,
+#settings:hover {
+	background-color: grey;
+
+}
+
+#dashboard:hover  {
+	background-color: grey;
+}
+#menu {
+	position: absolute;
+	height: 700px;
+	width: 40px;
+	left: 0px;
+	top: 30px;
+	border-left: None;
+	border-right: None;
+}
+
+.inner {
+	position: absolute;
+	height: 700px;
+	width: 72px;
+	left: 0px;
+	top: 0px;
+	background-color: #2f4f4f;
+	box-shadow: 0px 0px 3px 0px;
+}
+
+.inner i {
+	position: relative;
+	left: 10px;
+	top: 17px;
+}
+#dashboard {
+	height: 50px;
+	left: 3px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	right: 20px;
+	border-bottom: 1px solid
+}
+
+#project {
+        height: 50px;
+        left: 3px;
+	margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        right: 20px;
+        border-bottom: 1px solid
+}
+
+#community {
+        height: 50px;
+        left: 3px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        right: 20px;
+        border-bottom: 1px solid
+}
+
+#chess {
+        height: 50px;
+        left: 3px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        right: 20px;
+        border-bottom: 1px solid
+}
+
+#studyroom {
+        height: 50px;
+        left: 3px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        right: 20px;
+        border-bottom: 1px solid
+}
+
+#profile {
+        height: 50px;
+        left: 3px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        right: 20px;
+        border-bottom: 1px solid
+}
+
+#settings {
+	position: relative;
+	top: 1200px;
+	height: 50px;
+        left: 0px;
+	top: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        right: 23px;
+        border-bottom: 1px solid
+}

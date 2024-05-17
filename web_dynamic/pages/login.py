@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """login authentication and redirection"""
 from web_dynamic.pages import app_pages
-from flask import redirect, url_for, request, flash, render_template
+from flask import redirect, url_for, request, flash, render_template, session
 from models import storage
 from models.user import User
 import bcrypt
@@ -19,11 +19,15 @@ def login_post():
 
     if username in usernames_dct.keys():
         user = usernames_dct[username]
+        username1 = user.username;
+        user_id = user.id
         passwd = user.password.encode("utf-8")
 
-        print(passwd)
         r = bcrypt.checkpw(password.encode("utf-8"), passwd)
         if r is True:
+            session["username"] = username1
+            session["id"] = user_id
+            print(session)
             flash("signed in successfully")
             return redirect(url_for("main_dashboard"))
         else:

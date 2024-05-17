@@ -1,0 +1,159 @@
+#Tlogo {
+	position: absolute;
+	top: 0px;
+	height: 40px;
+	width: 50px;
+	background-color: yellow;
+}
+
+#Tdetal {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	top: 0px;
+	left: 50px;
+	width: 90%;
+	height: 70px;
+}
+
+.pname {
+	width: 100%;
+	height: 35%;
+	margin-left: 20px;
+	border-bottom: 0.5px solid #778899;
+}
+
+.headers {
+	position: absolute;
+	display: flex;
+	top: 35%;
+	width: 100%;
+	height: 30%;
+	border: None;
+}
+
+
+#Hboard {
+	width: 100px;
+	height: 100%;
+	border-right: 1px solid #778899;
+}
+
+#Htasks {
+	width: 90px;
+	height: 100%;
+	border-right: 1px solid #778899;
+}
+
+#HTodo {
+	width: 80px;
+	height: 100%;
+	border-right: 1px solid #778899;
+}
+
+#Hgantt {
+	width: 80px;
+	height: 100%;
+	border-right: 1px solid #778899;
+}
+
+#Hcalender {
+	width: 80px;
+	height: 100%;
+	border-right: 1px solid #778899;
+}
+
+
+
+
+#Hboard #Bidentifier {
+	color: white;
+	display: inline-block;
+	position: absolute;
+	text-align: center;
+	line-height: 40px;
+	display: None;
+	width: 50px;
+	top: 40px;
+	left: 0px;
+	z-index: 20;
+	background-color: #1c2841;
+	border: None;
+}
+
+#Htasks #Tidentifier {
+	color: white;
+	position: absolute;
+	text-align: center;
+	line-height: 40px;
+	width: 60px;
+	height: 50px;
+	top: 30px;
+	left: 155px;
+	z-index: 30;
+	background-color: #1c2841;
+	border: None;
+}
+
+#HTodo #TDidentifier {
+	color: white;
+	display: inline-block;
+	position: absolute;
+	display: None;
+	text-align: center;
+	line-height: 40px;
+	width: 60px;
+	height: 40px;
+	top: 40px;
+	left: 250px;
+	z-index: 20;
+	background-color: #1c2841;
+	border: None;
+}
+
+#Hgantt #Gidentifier {
+	color: white;
+	display: inline-block;
+	position: absolute;
+	display: None;
+	text-align: center;
+	line-height: 30px;
+	width: 80px;
+	height: 30px;
+	z-index: 20;
+	background-color: #1c2841;
+	top: 40px;
+	left: 335px;
+	border: None;
+}
+
+
+#Hcalender #Cidentifier {
+	content: " ";
+	color: white;
+	display: none;
+	width: 80px;
+	height: 40px;
+	text-align: center;
+	line-height: 35px;
+	position: absolute;
+	z-index: 26;
+	background-color: #1c2841;
+	top: 40px;
+	left: 435px;
+	border: None;
+}
+
+.tooltip::before {
+	content: "";
+	position: absolute;
+	top: -40%;
+	width: 0px;
+	height: 0px;
+	left: 5px;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #f8f4ff;
+	margin-left: 5px;
+}
+

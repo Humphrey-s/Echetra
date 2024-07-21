@@ -1,61 +1,30 @@
-<!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="../static/styles/header.css"/>
-		<link rel="stylesheet" href="../static/styles/body.css"/>
-		<link rel="stylesheet" href="../static/styles/div.css"/>
 		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
 		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
-		<script src="../static/scripts/s-login.js"></script>
-<style>
-.notification {
-	position: absolute;top: 115px;width: 250px;
-	line-height: 1px;z-index: 11;left: 45px;
-	text-align: center;
-	color: red;height: 30px; background-color:#add8e6;border-radius: 5px; 
-}
-
-</style>
+		<link rel="stylesheet" href="../static/styles/login.css?{{cache_id}}"></link>		
 	</head>
 	<body>
-		<header style="display: block;"class="top">
-			<div class="title">
-				<p style="color: white;">Echetra for Engineers</p>
-			</div>
-			<div class="login">
-				<p>login</p>
-			</div>
-			<div class="signUp">
-				<p>sign up<p>
-			</div>
-		</header>
-
-		<div class="f-login">
-			<div class="header">
-				<h1>login</h1>
-			</div>
-			<div class="main">
-
-				{% with messages = get_flashed_messages() %}
-				{% if messages %}
-				<div class="notification">
-					<p>{{ messages[0] }}!!!</p>
+			<div id="lil-wrapper">
+				<div id="lil-logo">
 				</div>
-				{% endif %}
-				{% endwith %}
-			<form method="POST" action="/loginauth">
-				<span>
-					<i class="fa fa-user"></i>
-					<input type="text" placeholder="Username" name="username">
-				</span><br>
-				<span>
-					<i class="fa fa-lock"></i>
-					<input type="password" placeholder="password" name="passwd">
-				</span><br>
-				<button type="submit" class="btn">login</button>
-			</form>
+				<span style="font-size: 26px;font-family: sans-serif;color: white; margin-top: 10px;">Welcome to Echetra</span>
+				<span style="font-size: 12px;font-family: sans-serif;color: white;margin-top: 5px;">Log In or Register with your email</span>
+				<div id="lil-con-google"><i class="fa-brands fa-google fa-xl"></i>Continue with Google</div>
+				<hr class="lil-line"></hr>
+				<form id="emailsign-f" method="POST" action="/echetra/signin/code?{{cache_id}}">
+					<input id="lil-email" type="email" placeholder="Email" name="email"></input>
+					<div id="lil-continue">Continue</div>
+					<input id="lil-submit" style="display: none;" type="submit"></input>
+				</form>
 			</div>
-		</div>
+			<script type="text/javascript">
+				$(document).ready(function () {
 
+					$("#lil-continue").click(function () {
+						$("#lil-submit").click()
+					});
+				});
+			</script>		
 	</body>
 </html>

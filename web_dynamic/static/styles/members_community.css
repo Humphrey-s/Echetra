@@ -1,0 +1,336 @@
+.community-main-container {
+	display: flex;
+	flex-direction: column;
+	border: None;
+	position: relative;
+}
+
+.members-search {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 10%;
+	border-bottom: 1px solid grey;
+}
+
+#card-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	padding: 10px;
+	width: 100%;
+	min-height: 90%;
+	height: auto;
+	overflow-y: scroll;
+	height: auto;
+}
+
+
+
+.card {
+	display: flex;
+	flex-direction: column;
+	height: 40vh;
+	width: calc((100% / 3) - 26px);
+	margin: 8px;
+	border-radius: 5px;
+	transition: all 200ms ease-in-out;
+}
+
+.card-upper {
+	border-radius: 5px 5px 0px 0px;
+	position: relative;
+	width: 100%;
+	height: 80%;
+}
+
+.card-lower {
+	width: 100%;
+	height: 20%;
+	box-sizing: border-box;
+	padding-left: 20px;
+	font-family: cursive;
+	cursor: pointer;
+	padding-top: 10px;
+	border: 1px solid grey;
+	border-radius: 0px 0px 5px 5px;
+}
+
+.card-link {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.card:hover {
+	box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/*.card-actions {
+	margin: 8px;
+	padding: 16px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}*/
+/*loading animations*/
+#loader {
+	display: flex;
+}
+
+.skeleton-card {
+	height: 55vh;
+	width: calc((100% / 3) - 16px);
+	margin: 8px;
+	border-radius: 3px;
+	transition: all 200ms ease-in-out;
+	position: relative;
+	background-color: #eaeaea;
+}
+
+.skeleton-card::after {
+	content: "";
+	position: absolute;
+	top: 0;	
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transform: translateX(-100%);
+	background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0));
+  	animation: load 1s infinite;
+}
+
+@keyframes load {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	.skeleton-card::after {
+		animation: none;
+	}
+}
+
+#members-search-left {
+	position: relative;
+	width: 48%;
+	height: 100%;
+}
+#members-search-right {
+	display: flex;
+	flex-direction: row-reverse;
+	padding-right: 15px;
+	width: 26%;
+	height: 100%;
+}
+
+#members-search-center {
+	width: 26%;
+	height: 100%;
+	box-sizing: border-box;
+	padding-top: 4px;
+	padding-left: 20px;
+}
+
+#members-search-bar {
+	box-sizing: border-box;
+	padding-left: 38px;
+	margin-left: 20px;
+	margin-top: 13px;
+	outline: None;
+	width: 420px;
+	height: 30px;
+	cursor: pointer;
+	border: 1px solid grey;
+	border-radius: 7px;
+}
+
+#members-search-left i {
+	position: absolute;
+	left: 33px;
+	top: 20px;
+}
+
+
+#members-profile {
+	cursor: pointer;
+	font-weight: bold;
+	font-family: sans-serif;
+	text-align: center;
+	line-height: 30px;
+	margin-top: 21px;
+	width: 30px;
+	height: 30px;
+	border: 1px solid grey;
+	margin-right: 10px;
+	border-radius: 5px;
+}
+
+#members-notification {
+	cursor: pointer;
+	box-sizing: border-box;
+	padding-left: 7px;
+	padding-top: 7px;
+	margin-top: 22px;
+	color: grey;
+	width: 30px;
+	height: 30px;
+	margin-right: 5px;
+	border-radius: 5px;
+}
+
+#members-message {
+	cursor: pointer;
+	padding-left: 7px;
+	padding-top: 7px;
+	margin-top: 22px;
+	box-sizing: border-box;
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+	border-radius: 5px;
+}
+
+#members-total {
+	cursor: default;
+	font-family: sans-serif;
+	font-weight: 300;
+	font-size: 18px;
+}
+
+#card-form {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding-top: 20px;
+	padding-left: 23px;
+	padding-right: 10px;
+	position: absolute;
+	font-family: sans-serif;
+	z-index: 2;
+	top: 61px;
+	right: -520px;
+	width: 500px;
+	height: 555px;
+	border: 1px solid grey;
+}
+
+#card-form h3 {
+	margin: 0px;
+}
+
+#card-form-detante {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	width: 100%;
+	height: 180px;
+	border-bottom: 1px solid grey;
+}
+
+#card-form-detante-upper {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 66%;
+}
+#card-form-detante-lower {
+	display: flex;
+	box-sizing: border-box;
+	padding-top: 27px;
+	font-size: 12px;
+	flex-direction: row;
+	position: relative;
+	width: 100%;
+	height: 34%;
+	gap: 20px;
+	font-family: sans-serif;
+	border-bottom: 0.5px solid grey;
+}
+
+
+#card-form-detante-profile {
+	margin-right: 13px;
+	width: 100px;
+	height: 113px;
+	border-radius: 15px;
+	border: 1px solid grey;
+}
+#card-user-main {
+	display: flex;
+	flex-direction: column;
+	margin-top: 6px;
+	font-weight: 100;
+	font-size: 18px;
+}
+.card-user-contact {
+	display: flex;
+	margin-top: 10px;
+	flex-direction: row;
+	width: 100%;
+	height: auto;
+}
+
+.card-user-contact button {
+	display: flex;
+	flex-direction: row;
+	cursor: pointer;
+	box-sizing: border-box;
+	padding-top: 0px;
+	padding-left: 20px;
+	width: 130px;
+	height: 35px;
+	border-radius: 10px;
+	outline: none;
+	background-color: transparent;
+	border: 1px solid grey;
+}
+
+#card-user-Name i {
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+#card-user-Name span {
+	font-weight: bold;
+	font-size: 15px;
+	margin-top: 7px;
+}
+
+#card-user-link-copy {
+	font-size: 15px;
+	margin-left: 20px;
+	width: 50px;
+	height: 35px;
+	border: 1px solid grey;
+	border-radius: 6px;
+	padding-top: 9px;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+#card-form-detante-lower span {
+	text-align: center;
+	cursor: pointer;
+	color: grey;
+	width: auto;
+	height: auto;
+}
+
+.span-tapped {
+	margin-top: 16px;
+	width: 100%;
+	height: 4px;
+	border-radius: 10px;
+	background-color: None;
+}
+
+#card-form-detante-lower span:hover > div {
+	background-color: grey;
+}
+
+#card-form-detante-lower span:active {
+	color: black;
+}

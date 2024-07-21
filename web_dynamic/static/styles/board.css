@@ -1,0 +1,69 @@
+.searchboard {
+	position: absolute;
+	top: 47px;
+	width: 100%;
+	height: 70px;
+}
+#p_container {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	top: 110px;
+	left: 0px;
+	height: 80vh;
+	width: 200px;
+	color: white;
+	overflow-x: hidden;
+	overflow-y: auto;
+	border-bottom: 1px solid grey;
+}
+#p_container ul {
+	padding-left: 0px;
+	list-style: None;
+}
+
+#plink {
+	position: relative;
+	height: 50px;
+	width: 100%;
+	margin-bottom: 10px;
+	margin: 0px;
+	padding: 0px;
+	padding-left: 9px;
+}
+
+#plink span {
+	position: absolute;
+	top: 3px;
+	color: #414a4c;
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	background-color: #8b4513;
+	border-radius: 50%;
+}
+
+#plink a {
+	position: absolute;
+	top: 2px;
+	cursor: pointer;
+	left: 36px;
+	/*color: #f0ffff;*/
+	color: #f2f3f4;
+	text-decoration: None;
+}
+
+.searchboard input {
+	position: absolute;
+	top: 30px;
+	margin-left: 5px;
+	outline: None;
+	background-color: #2f4f4f;
+	padding-left: 20px;
+	width: 190px;
+	height: 30px;
+	border: 0.1px solid grey;
+	border-radius: 5px;
+}

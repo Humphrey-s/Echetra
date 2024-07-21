@@ -1,0 +1,72 @@
+<html !DOCTYPE>
+	<head>
+		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
+		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
+		<link rel="stylesheet" href="../../static/styles/login.css?{{cache_id}}"></link>		
+	</head>
+	<body>
+		<div id="lil-wrapper">
+			<div id="lil-logo">
+				</div>
+			<span style="font-size: 26px;font-family: sans-serif;color: white; margin-top: 10px;">
+			Let's get to meet you up.
+			</span>
+			<span style="font-size: 12px;font-family: sans-serif;color: white;margin-top: 5px;">
+			Understanding who uses Echetra helps us improve.
+			</span>
+			<form id="namesign-f" method="POST" action="/echetra/signup/onboarding-end?{{cache_id}}">
+					
+					<select class="lil-name" name="occupation">
+						<option selected disabled>What's your occupation</option>
+						<option value="">Engineer</option>
+						<option value="">Artist</option>
+						<option value="">Other</option>
+					</select>
+					<hr style="width: 0px; height: 0px;background-color: none;margin: 0px;border: none;">
+					<select class="lil-name" name="schoolLevel">
+						<option selected disabled>What describes you best</option>
+						<option value="professional">👨‍✈️ Professional </option>
+						<option value="Postgraduate">🧑🏻‍🎓 Postgraduate</option>
+						<option value="College">📕 College</option>
+						<option value="High School">📘 High School </option>
+						<option value="Middle School">📗 Middle School</option>
+					</select>
+					<hr style="width: 0px; height: 0px;background-color: none;margin: 0px;border: none;">
+					<select class="lil-name" name="interests">
+						<option value="" selected disabled>Which of these do you like best</option>
+						<option value="🎵 Rock">🎵 Rock</option>
+						<option value="🎵 Jazz">🎵 Jazz</option>
+						<option value="🎵 Lofi">🎵 Lofi</option>
+						<option value="🎵 Country">🎵 Country</option>
+						<option value="🎵 Classical">🎵 Classical</option>
+						<option value="🎵 Pop">🎵 Pop</option>
+						<option value="🎵 Piano">🎵 Piano</option>
+						<option value="🎵 Guitar">🎵 Guitar</option>
+						<option value="🎵 Taylor Swift">🎵 Taylor Swift</option>
+						<option value="🎵 Drake">🎵 Drake</option>
+						<option value="🎵 Billie Elish">🎵 Billie Elish</option>
+						<option value="🎵 Electronic">🎵 Electronic</option>
+						<option value="🎙️ Podcast">🎙️ Podcast</option>
+						<option value="👨‍🍳 Cooking">👨‍🍳 Cooking</option>
+						<option value="✍️ Drawing">✍️ Drawing</option>
+						<option value="🏎️ Cars">🏎️ Cars</option>
+						<option value="🍎 Health">🍎 Health</option>
+						<option value="📷 photography">📷 photography</option>
+					</select>
+
+					<div id="lil-con-google2">Next</div>
+					<input id="lil-submit" style="display: none;" type="submit"></input>
+			</form>
+
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function () {
+
+					$("#lil-con-google2").click(function () {
+						$("#lil-submit").click()
+					});
+				});
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,63 @@
+.aside {
+	padding-left: 0px;
+	box-sizing: border-box;
+	flex-shrink: 0;
+	align-items: center;
+	background-color: RGB(19, 31, 82);
+}
+
+.bar  {
+	cursor: pointer;
+	height: 50px;
+	width: 50px;
+	box-shadow: 0;
+	transition: box-shadow 2s;
+	margin-top: 9px;
+	/*margin-left: 13px;*/
+	border: None;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 50px;
+	transition: background-color 0.5s ease-in;
+	color: white;
+	background-color: rgb(102,102,153, 0.5);
+}
+
+.elogo-wrapper {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
+
+.bar.home {
+	margin-top: 10px;
+}
+
+.bar.settings {
+	margin-top: 20px;
+}
+.bar:hover {
+	background-color: grey;
+}
+
+.bar.chess {
+	margin-bottom: 9px;
+}
+
+.bar.profile {
+	margin-top: 5px;
+}
+
+.hlil-line {
+	width: 50px;
+	height: 1px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	background-color: grey;
+}
+
+.bar:hover {
+	-webkit-box-shadow: 0 0 2px #5218fa;
+	box-shadow: 0px 0px 1px 1px #5218fa;
+	background-color: #5218fa;
+}

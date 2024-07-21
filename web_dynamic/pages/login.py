@@ -5,9 +5,10 @@ from flask import redirect, url_for, request, flash, render_template, session
 from models import storage
 from models.user import User
 import bcrypt
+from uuid import uuid4
 
 
-@app_pages.route("/loginauth", methods=["POST"], strict_slashes=False)
+@app_pages.route("/echetra/loginauth", methods=["POST"], strict_slashes=False)
 def login_post():
     """login authentication"""
     username = request.form.get("username")
@@ -27,30 +28,30 @@ def login_post():
         if r is True:
             session["username"] = username1
             session["id"] = user_id
-            print(session)
             flash("signed in successfully")
-            return redirect(url_for("main_dashboard"))
+            return redirect(url_for("predashboard"))
         else:
-            flash("Invalid credentrials")
+            flash(f"Invalid credentrials: {r}")
             return redirect(url_for("app_pages.plogin"))
     else:
         flash("Invalid credentrials")
         return redirect(url_for("app_pages.plogin"))
 
 
-@app_pages.route("/login", methods=["POST", "GET"], strict_slashes=False)
+@app_pages.route("/echetra/login", methods=["POST", "GET"], strict_slashes=False)
 def plogin():
     """return login page"""
-    return render_template("login.html")
+    return render_template("login.html",
+        cache_id = uuid4())
 
 
-@app_pages.route("/signUp", methods=["POST", "GET"], strict_slashes=False)
+@app_pages.route("/echetra/signUp", methods=["POST", "GET"], strict_slashes=False)
 def psignup():
     """sign up"""
-    return render_template("signUp.html")
+    return render_template("signUp.html", cache_id = uuid4())
 
 
-@app_pages.route("/signlauth", methods=["POST", "GET"], strict_slashes=False)
+@app_pages.route("/echetra/signlauth", methods=["POST", "GET"], strict_slashes=False)
 def signUp():
     """handles sign up data"""
     username = request.form.get("username")
@@ -75,4 +76,7 @@ def signUp():
                 dct = {"username": username, "password": passwd2}
                 instance = User(**dct)
                 instance.save()
-                return redirect(url_for("main_dashboard"))
+                storage.save()
+                storage.reload()
+
+                return redirect(url_for("app_pages.plogin"))

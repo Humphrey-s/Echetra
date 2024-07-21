@@ -15,6 +15,7 @@
 		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
 		<script src="../static/scripts/s-login.js"></script>
 		<script src="../static/scripts/projects.js"></script>
+		<script src="../static/scripts/2-projects.js"></script>
 	</head>
 	<body>
 		<header class="top">
@@ -51,33 +52,73 @@
 		</section>
 		<main>
 <style>
-#Hcurrent{position: absolute;font-size: 8px;top: 40px;left: 10px;text-align: center;line-height: 8px;width: 110px;border-radius: 10px;height: 25px;box-shadow: 0px 0px 3px 0px;background-color: #648c11;}
-#Finished {position: absolute;font-size: 8px;left: 150px;text-align: center;line-height: 8px;top: 40px;width: 95px;border-radius: 10px;height: 25px;box-shadow: 0px 0px 3px 0px;background-color: #648c11;}
-#Hstudy{position: absolute;font-size: 8px;left: 280px;text-align: center;line-height: 8px;top: 40px;width: 100px;border-radius: 10px;height: 25px;box-shadow: 0px 0px 3px 0px;background-color: #648c11;}
+#Hcurrent{position: absolute;font-size: 8px;top: 40px;left: 10px;cursor:default;text-align: center;line-height: 8px;width: 110px;border-radius: 10px;height: 25px;box-shadow: 0px 0px 3px 0px;background-color: #648c11;}
+#Finished {position: absolute;font-size: 8px;left: 150px;text-align: center;cursor:default;line-height: 8px;top: 40px;width: 95px;border-radius: 10px;height: 25px;box-shadow: 0px 0px 3px 0px;background-color: #648c11;}
+#Hstudy{position: absolute;font-size: 8px;left: 280px;text-align: center;cursor:default;line-height: 8px;top: 40px;width: 100px;border-radius: 10px;height: 25px;box-shadow: 0px 0px 3px 0px;background-color: #648c11;}
 /*#board {position: absolute;top: 0;height: 100%; width: 200px;border-right: 0.5px solid grey;
 }*/
 </style>
 <style>
 .project {display: None;}
 </style>
+<script>
+	var projects = "{{ projects }}"
+	var userid = "{{ user_id }}"
+</script>
 			<section class="main" id="projects">
 
-				<!--<section class="home">
-					<h1>Home</h1><br>
-					<div id="Hcurrent">
-						<h2>Current Projects</h2>
-					</div>
-					<div id="Finished">
-						<h2>Finished</h2>
-					</div>
-					<div id="Hstudy">
-						<h2>Study Rooms</h2>
-					</div>
-				</section -->
+				<section class="home">
+					<div id="homeHeaders">
+						<h1>Home</h1><br>
+						<a><div id="Hcurrent">
+							<h2>Current Projects</h2>
+						</div></a>
+						<div id="Finished">
+							<h2>Finished</h2>
+						</div>
+						<div id="Hstudy">
+							<h2>Study Rooms</h2>
+						</div>
+					<div>
+						<div class="mainhome">
+						</div>
+				</section>
 	
-				<section class="project">
+				<!--section class="project">
 					<div id="board">
+						<h3>projects</h3>
+						<div class="searchboard">
+							<input id="findProject" type="search" placeholder="find a project..."></input>
+						</div>
+                                                <div id="p_container">
+                                                        <ul id="listproject">
+								{% for project in projects %}
+									<div id="plink">
+										<span id="roundlink" style="text-align:center;font-size:12px;">
+											{{ username[:2] }}</span>
+										<a href="{{ username }}/{{ project.name }}"><li>{{ username }}/{{ project.name }} </li></a><br>
+									</a>
+									</div>
+								{% endfor %}
+                                                        </ul>
+                                                </div>
 					</div>
+					<div id="Sboard">
+						<input type='text' placeholder="Type/Search ..."></input>
+                                                <i class="fa-solid fa-magnifying-glass"></i>
+					</div>
+			</section-->
+
+				<section class="community">
+                                	<div id="commune">
+                               	 	</div>
+
+				</section>
+				<section class="studyroom">
+				</section>
+				<section class="chess">
+				</section>
+				<section class="profile">
 				</section>
 			</section>
 

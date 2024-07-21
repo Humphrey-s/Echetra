@@ -4,3 +4,5 @@ app_pages = Blueprint("app_pages", __name__, url_prefix="/")
 
 from web_dynamic.pages.login import *
 from web_dynamic.pages.projects import *
+from web_dynamic.pages.user import *
+from web_dynamic.pages.resource import *

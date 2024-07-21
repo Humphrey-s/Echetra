@@ -1,0 +1,49 @@
+<html !DOCTYPE>
+	<head>
+		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
+		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
+		<link rel="stylesheet" href="../../static/styles/login.css?{{cache_id}}"></link>		
+	</head>
+	<body>
+		<div id="lil-wrapper">
+			<div id="lil-logo">
+			</div>
+			<span style="font-size: 26px;font-family: sans-serif;color: white; margin-top: 10px;">Check your email</span>
+			<div id="lil-senc">We sent you a sign-in code to: {{email}}<br>&emsp;&emsp;&emsp;&emsp;&emsp;Paste it or type it below to continue.</div>
+			<form id="slgn-fcode" action="/echetra/Oauth" method="POST">
+				<input id="1" type="text" name="1"/>
+				<input id="2" type="text" name="2"/>
+				<input id="3" type="text" name="3" />
+				<input id="4" type="text" name="4"/>
+				<input id="5" style="display: none" type="text" name="email" value="{{email}}"/>
+				<button id="6" type="submit" style="display: none;"></button>
+			</form>
+			<div id="resend-code">resend</div>
+
+		</div>
+			<script type="text/javascript">
+				$(document).ready(function () {
+
+					$("input").on("keyup change", function () {
+						let inputs = ["#1", "#2", "#3", "#4"]
+						let flag = 0
+
+						Array.from(inputs).forEach(function (input) {
+							if (!$(input).val()) {
+								flag = 1;
+							}
+						});
+
+						if (flag === 0) {
+							acode = $("#1").val() + $("#2").val() + $("#3").val() + $("#4").val()
+							console.log(`${acode}: {{code}}`);
+
+							if (acode === "{{code}}") {
+								$("#6").click();
+							}
+						}
+					});
+				});
+			</script>		
+	</body>
+</html>

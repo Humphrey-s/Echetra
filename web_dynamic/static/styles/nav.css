@@ -4,6 +4,8 @@ html {
 
 body {
 	overflow-x: hidden;
+	width: 1200px;
+	margin: auto;
 	height: 100vh;
 }
 

@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Echetra</title>
+
+		<link rel="stylesheet" href="../../../static/styles/layout.css"/>
+		<link rel="stylesheet" href="../../../static/styles/wrapper3.css"/>
+		<link rel="stylesheet" href="../../../static/styles/profile.css"/>
+		<link rel="stylesheet" href="../../../static/styles/community.css">
+
+
+		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js" integrity="sha512-11t8Q+vY9JlCrr+PveZKTYJq8n7O09Y5X/pk/aMd3vJugSvu4xOunGEUzaADqL3I8cZKE/pBwwCfXzDkRJh2sQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
+		<script src="../../../static/scripts/home.js"></script>
+	</head>
+	<body>
+		<div class="wrapper">
+
+			<div id="title">
+				<p style="color: white;">Echetra for Engidineers</p> 
+			</div>
+			<div class="main wrapper2">
+				<div class="aside">
+					<a><div class="elogo-wrapper"><img class="elogo-wrapper" src="/static/images/elogo.png"></img></div></a>
+					<hr class="hlil-line">
+					<a href="/echetra/home?{{cache_id}}" id="home-link"><div class="bar home">
+						<i class="fa-solid fa-house fa-xl" ></i>
+					</div></a>
+					<a href="/echetra/projects/?{{cache_id}}"><div class="bar project">
+						<i class="fa-solid fa-bars-progress fa-xl"></i>
+					</div></a>
+					<!--div class="bar study">
+						<i class="fa-solid fa-globe fa-xl"></i>
+					</div-->
+					<a href="/Echetra/{{username}}/community?{{cache_id}}"><div class="bar community">
+						<i class="fa-solid fa-people-arrows fa-xl"></i>  
+					</div></a>
+					<a href="/echetra/chess"><div class="bar chess">
+						<i class="fa-solid fa-chess fa-xl"></i>
+					</div></a>
+					<hr class="hlil-line">
+					<div class="bar profile">
+						<i class="fa-solid fa-user fa-xl"></i>
+					</div>
+				</div>
+				<div class="main wrapper3">
+					<div id="community">
+						<div class="community-side-container">
+							<div class="community-header">
+								<h2>Echetra | Community </h2>
+							</div>
+							<div class="community-side-main">
+								<span class="comunity-side-home"><i class="fa-solid fa-house fa-xl">
+								</i><a href="">Home</a></span>
+								<span class="community-side-members"><i class="fa-solid fa-user-group fa-xl"></i><a href="/echetra/community/members">Members</a></span>
+								<span class="messages-side"><i class="fa-solid fa-square-envelope fa-2xl"></i><a href="/echetra/community/messages">Messages</a></span>
+								<span class="community-side-presentations">Presentations</span>
+								<div class="community-project-categories">
+								</div>
+								<span class="community-names">Fellowship Community</span>
+								<div id="communities-container">
+								</div>
+							</div>
+						</div>
+						<div class="community-main-container">
+							<div class="community-home-posts">
+								<div id="posts-category">
+									<div class="category-public">
+										<a>Public<a><br>
+									</div>
+									<div class="category-friends">
+										<a>Friends</a><br>
+									</div>
+								</div>
+								<div id=posts-display>
+									<div id="posts-create">
+										<div class="posts-create-left">
+											<div id="posts-profile-pic"></div>
+										</div>
+
+										<div class="posts-create-right">
+											<form method="POST" enctype="multiple/form-data" id="upload-form">									
+												<div class=posts-text>
+													<textarea id="posts-text" placeholder="What is happening ..." oninput="adjustWidth(this)" name="text" multiple></textarea>
+													<div id="posts-text-media">
+														<button id="xbtn" style="display: none;"><h2>&times</h2></button>
+														<img id="pi" src=""></img>
+													</div>
+												</div>
+												<div class="posts-text-add">
+													<style>
+														.posts-media i {
+															color: lightgray;
+														}
+													</style>
+													<div class="posts-media">
+														<button id="fileUpload" name="filename"><i class="fa-regular fa-image fa-lg"></i></button>
+														<button><i class="fa-regular fa-face-smile fa-lg"></i></button>
+
+														<input type="file" id="fileInput" accept="image/*,video/*" style="display: None" name="filename" multiple/>
+														<input id="reset" type="reset" style="display:None" value="Reset">
+													</div>
+													<div class="posts-post">
+														<button type="submit" id="posts-submit">Post</button>
+													</div>
+												</div>
+											</form>								
+										</div>
+									</div>
+									<div id="post-submitted"></div>
+									{% for p in posts %}
+									<div class="post">
+										<div class="post-left">
+											<div class="post-user"></div>
+										</div>
+										<div class="post-detante">
+											<div class="community-user-url">
+												<a href="/echetra/{{p.user}}/status/{{p.id}}">{{p.user}}</a>
+												<a href="/echetra/{{p.user}}/status/{{p.id}}"><div class="diamond"></div></a>
+											</div>
+											<span style="margin-bottom: 10px">{{p.text}}</span>
+											{% if p.media %}
+												<div class="post-image">
+													<img src="{{p.media}}"></img>
+												</div>											
+											{% endif %}
+											<div class="post-interaction">
+												<i class="fa-regular fa-message" style="color: lightgray;"></i>
+												<i class="fa-solid fa-retweet" style="color: lightgray;"></i>
+												<i class="fa-regular fa-heart" style="color: lightgray;"></i>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+							<div class="community-home-others">
+								<div id="events4hackathons">
+									<div id="eh4title">Upcoming Hackathons</div>
+									{% if hackathons %}
+									{% for h in hackathons.values() %}	
+											<div id="f4hack">
+												<div id="hdate">
+													<span id="hmonth">{{h.sTd[1]}}</span>
+													<span id="hmdt">{{h.sTd[0]}}</span>
+												</div>
+												<div id="hack-detante">
+													<a href="{{h.link}}"><span id="htitle">{{h.title}}</span></a><br>
+													<span id="hdate2">{{h.startDate}} - {{h.endDate}}</span>
+												</div>
+											</div>
+									{% endfor %}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="user-user-profile-cover">
+			</div>
+		
+			<div id="user-user-profile">
+				<div id="user-user-profile-upper">
+					<div id="user-profile-style">
+						<div id="use-profile-circle">
+							<div id="use-profile-circle-main"></div>
+						</div>
+						<a href="#" class="clickhere" style="margin-left: 530px;margin-top: 20px;"><div class="write-profile"><i class="fa-solid fa-pencil"></div></i></a>
+					</div>
+					<div id="user-profile-style-detante">
+						<div id="user-profile-style-detante-upper">
+						</div>
+						<div id="user-profile-style-detante-lower">
+							<span id="user-profile-detante-name">{{user.username}}</span>
+							<span id="user-profile-detante-carreer">
+								<img  src="../../../static/images/web/book.png" width="18px" height="18px"></img>
+								{% if user.schoolLevel %}
+								<span style="margin-top: 0px;color: #ffffff;font: 13px 'DIGITAL', Helvetica;">{{user.schoolLevel}}</span>
+								{% else %}
+								<span style="margin-top: 0px;color: #ffffff;font: 13px 'DIGITAL', Helvetica;">undetermined</span>
+								{% endif %}
+								<img src="../../../static/images/cyborng.png" width="18px" height="18px"></img>
+								{% if user.work %}
+								<span style="margin-top: 0px;color: #ffffff;font: 13px 'DIGITAL', Helvetica;">{{user.work}}</span>
+								{% else %}
+								<span style="margin-top: 0px;color: #ffffff;font: 13px 'DIGITAL', Helvetica;">undetermined</span>
+								{% endif %}
+
+							</span>
+							<span id="user-profile-detante-time">
+								<i class="fa-regular fa-clock"></i>
+								<div class="digital-clock">00:00:00</div>
+							</span>
+							<span id="user-profile-detante-friends">
+								<i class="fa-solid fa-user-group"></i>
+							</span>
+							<div id="user-profile-outline">
+								<span id="upo-about" style="color: black;">About<div class="span-tapped" id="tapped-about" style="background-color: black;"></div></span>
+								<span id="upo-posts">Posts<div class="span-tapped" id="tapped-post"></div></span>
+								<span id="upo-projects">Projects<div class="span-tapped" id="tapped-project"></div></span>
+								<span id="upo-comments">Comments<div class="span-tapped" id="tapped-comment"></div></span>
+								<span id="upo-community">Community<div class="span-tapped" id="tapped-community"></div></span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div id="user-user-profile-lower">
+					<div id="up-about">
+						<h4>ABOUT ME</h4>
+						{% if user.description %}
+							<p>{{user.description}}</p>
+						{% else %}
+							<p>Uh oh, there's nothing here yet &#128517 <a href="#" class="clickhere">click here to fill it in</a></p>
+						{% endif %}
+						<h4>PROJECT STATS</h4>
+						<div class="up-about-ps">
+							<div id="upaps-level">
+								⭐ Level
+								{% if user.level %}
+									<span>{{user.level}}</span>
+								{% else %}
+									 <span>1</span>
+								{% endif %}
+							</div>
+							<div id="upaps-focus">
+								<img src="../../../static/images/clockp.png.png" width="25px" height="25px"></img>
+								Focus Appx
+								{% if user.focus %}
+								<span>{{user.focus}}</span>
+								{% else %}
+								<Span>0</Span>
+								{% endif %}
+							</div>
+							<div id="upaps-streak">
+								<img src="../../../static/images/fire.png" width="25px" height="25px"></img>
+								No projects
+								{% if user.projects %}
+									<span>{{user.projects.no}}</span>
+								{% else %}
+									<span>0</span>
+								{% endif %}
+							</div>
+						</div>
+						<h4>INTERESTS</h4>
+						{% if user.interests %}
+							<div id="selected-interests">
+							{% for i in user.interests %}
+							<p>{{i}}</p>
+							{% endfor %}
+							</div>
+						{% endif %}
+					</div>
+					<div id="up-posts">
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="user-profile-form">
+	
+					<div id="user-profile-side-menu">
+						<span id="settings-title"><i class="fa-solid fa-chevron-left"></i>Settings</span>
+						<span id="settings-profile">Profile</span>
+						<span id="settings-account">Account settings</span>
+					</div>
+					<div id="user-profile-main-form">
+						<form id="user-profile-theform" method="POST" enctype="multiple">
+							<h2>Edit Profile</h2>
+							<div id="user-profile-appearence">
+								<h3>Profile Appearence</h3>
+								<h5>Avatar</h5>
+								{% if user.avatar_img %}
+									<div id="user-form-profile-avater">
+										<img src="../../../static/images/{{user.avatar_img}}?{{cache_id}}" style="object-fit: cover;"></img>
+									</div>
+								{% else %}
+									<div id="user-form-profile-avater" style="background-color: {{user.avatar_color}};">
+										{{user.username[0:2].upper()}}
+									</div>
+								{% endif %}
+								<h4>Profile Banner</h4>
+								<div class="profile-banner" id="profile-banner1" style="background-color: {{user.avatar_color}}">
+									<div id="profile-banner-img"><i class="fa-regular fa-image"></i>change</div>
+								</div>
+								<h4>Display Name</h4>
+								<span class="display-name-text">Choose wisely. This is the name people will know you by on Echetra</span>
+								<input class="profile-input-name" type="text" placeholder="{{user.username}}" name="username"></input>
+								<h4>About Me</h4>
+								<span class="display-name-text">Tell your story. This is where you can introduce yourself to the Echetra community</span>
+								{% if user.description %} 
+									<textarea class="profile-banner" id="about-me-textarea" placeholder="{{user.description}}" 
+									style="margin-bottom: 40px" name="description"></textarea>
+								{% else %}
+									<textarea class="profile-banner" id="about-me-textarea" placeholder="e.g. Aspiring doctor 🩺 Looking forward to meet and collaborate with Echetra community in many projects" 
+									style="margin-bottom: 40px" name="description"></textarea>
+								{% endif%}
+								<input type="file" id="profile-img-input" style="display: none;" name="avatar"></input>
+							</div>
+							<div id="user-profile-basicinfo">
+								<h3>Basic Info</h3>
+								<h4>Age</h4>
+								<span class="display-name-text">Make sure this is accurate to access the best rooms and improve recommendations.</span>
+								{% if user.age %}
+									<input class="profile-input-name" type="text" placeholder="{{user.age}}" style="margin-top: 5px;" name="age"></input>
+								{% else %}
+									<input class="profile-input-name" type="text" placeholder="e.g. 18" style="margin-top: 5px;" name="age"></input>
+								{% endif %}
+								<h4>Gender</h4>
+								<span class="display-name-text">These appear on your profile so others know how to refer to you.</span>
+								{% if user.gender %}
+									<select class="profile-input-name" name="gender">
+										<option disabled selected value="">{{user.gender}}</option>
+										<option value="girl">girl</option>
+										<option value="boy">boy</option>
+										<option value="non-binary">non-binary</option>
+									</select>
+								{% else %}
+									<select class="profile-input-name" name="gender">
+										<option disabled selected value="">{{user.gender}}</option>
+										<option value="girl">girl</option>
+										<option value="boy">boy</option>
+										<option value="non-binary">non-binary</option>
+									</select>
+								{% endif %}
+								<h4>Country</h4>
+								<span class="display-name-text">Make sure this is accurate to access the best rooms and improve recommendations.</span>
+								
+								<select class="profile-input-name" name="country">
+										{% if user.country %}
+											<option value="" selected disabled>{{user.country}}</option>
+										{% else %}
+											<option value="" selected disabled>Select a country</option>
+										{% endif %}
+										<option value="Afghanistan">Afghanistan</option>
+										<option value="Åland Islands">Åland Islands</option>
+										<option value="Albania">Albania</option>
+										<option value="Algeria">Algeria</option>
+										<option value="American Samoa">American Samoa</option>
+										<option value="Andorra">Andorra</option>
+										<option value="Angola">Angola</option>
+										<option value="Anguilla">Anguilla</option>
+										<option value="Antarctica">Antarctica</option>
+										<option value="Antigua and Barbuda">Antigua and Barbuda</option>
+										<option value="Argentina">Argentina</option>
+										<option value="Armenia">Armenia</option>
+										<option value="Aruba">Aruba</option>
+										<option value="Australia">Australia</option>
+										<option value="Austria">Austria</option>
+										<option value="Azerbaijan">Azerbaijan</option>
+										<option value="Bahamas">Bahamas</option>
+										<option value="Bahrain">Bahrain</option>
+										<option value="Bangladesh">Bangladesh</option>
+										<option value="Barbados">Barbados</option>
+										<option value="Belarus">Belarus</option>
+										<option value="Belgium">Belgium</option>
+										<option value="Belize">Belize</option>
+										<option value="Benin">Benin</option>
+										<option value="Bermuda">Bermuda</option>
+										<option value="Bhutan">Bhutan</option>
+										<option value="Bolivia">Bolivia</option>
+										<option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+										<option value="Botswana">Botswana</option>
+										<option value="Bouvet Island">Bouvet Island</option>
+										<option value="Brazil">Brazil</option>
+										<option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+										<option value="Brunei Darussalam">Brunei Darussalam</option>
+										<option value="Bulgaria">Bulgaria</option>
+										<option value="Burkina Faso">Burkina Faso</option>
+										<option value="Burundi">Burundi</option>
+										<option value="Cambodia">Cambodia</option>
+										<option value="Cameroon">Cameroon</option>
+										<option value="Canada">Canada</option>
+										<option value="Cape Verde">Cape Verde</option>
+										<option value="Cayman Islands">Cayman Islands</option>
+										<option value="Central African Republic">Central African Republic</option>
+										<option value="Chad">Chad</option>
+										<option value="Chile">Chile</option>
+										<option value="China">China</option>
+										<option value="Christmas Island">Christmas Island</option>
+										<option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+										<option value="Colombia">Colombia</option>
+										<option value="Comoros">Comoros</option>
+										<option value="Congo">Congo</option>
+										<option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+										<option value="Cook Islands">Cook Islands</option>
+										<option value="Costa Rica">Costa Rica</option>
+										<option value="Cote D'ivoire">Cote D'ivoire</option>
+										<option value="Croatia">Croatia</option>
+										<option value="Cuba">Cuba</option>
+										<option value="Cyprus">Cyprus</option>
+										<option value="Czech Republic">Czech Republic</option>
+										<option value="Denmark">Denmark</option>
+										<option value="Djibouti">Djibouti</option>
+										<option value="Dominica">Dominica</option>
+										<option value="Dominican Republic">Dominican Republic</option>
+										<option value="Ecuador">Ecuador</option>
+										<option value="Egypt">Egypt</option>
+										<option value="El Salvador">El Salvador</option>
+										<option value="Equatorial Guinea">Equatorial Guinea</option>
+										<option value="Eritrea">Eritrea</option>
+										<option value="Estonia">Estonia</option>
+										<option value="Ethiopia">Ethiopia</option>
+										<option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+										<option value="Faroe Islands">Faroe Islands</option>
+										<option value="Fiji">Fiji</option>
+										<option value="Finland">Finland</option>
+										<option value="France">France</option>
+										<option value="French Guiana">French Guiana</option>
+										<option value="French Polynesia">French Polynesia</option>
+										<option value="French Southern Territories">French Southern Territories</option>
+										<option value="Gabon">Gabon</option>
+										<option value="Gambia">Gambia</option>
+										<option value="Georgia">Georgia</option>
+										<option value="Germany">Germany</option>
+										<option value="Ghana">Ghana</option>
+										<option value="Gibraltar">Gibraltar</option>
+										<option value="Greece">Greece</option>
+										<option value="Greenland">Greenland</option>
+										<option value="Grenada">Grenada</option>
+										<option value="Guadeloupe">Guadeloupe</option>
+										<option value="Guam">Guam</option>
+										<option value="Guatemala">Guatemala</option>
+										<option value="Guernsey">Guernsey</option>
+										<option value="Guinea">Guinea</option>
+										<option value="Guinea-bissau">Guinea-bissau</option>
+										<option value="Guyana">Guyana</option>
+										<option value="Haiti">Haiti</option>
+										<option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+										<option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+										<option value="Honduras">Honduras</option>
+										<option value="Hong Kong">Hong Kong</option>
+										<option value="Hungary">Hungary</option>
+										<option value="Iceland">Iceland</option>
+										<option value="India">India</option>
+										<option value="Indonesia">Indonesia</option>
+										<option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+										<option value="Iraq">Iraq</option>
+										<option value="Ireland">Ireland</option>
+										<option value="Isle of Man">Isle of Man</option>
+										<option value="Israel">Israel</option>
+										<option value="Italy">Italy</option>
+										<option value="Jamaica">Jamaica</option>
+										<option value="Japan">Japan</option>
+										<option value="Jersey">Jersey</option>
+										<option value="Jordan">Jordan</option>
+										<option value="Kazakhstan">Kazakhstan</option>
+										<option value="Kenya">Kenya</option>
+										<option value="Kiribati">Kiribati</option>
+										<option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+										<option value="Korea, Republic of">Korea, Republic of</option>
+										<option value="Kuwait">Kuwait</option>
+										<option value="Kyrgyzstan">Kyrgyzstan</option>
+										<option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+										<option value="Latvia">Latvia</option>
+										<option value="Lebanon">Lebanon</option>
+										<option value="Lesotho">Lesotho</option>
+										<option value="Liberia">Liberia</option>
+										<option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+										<option value="Liechtenstein">Liechtenstein</option>
+										<option value="Lithuania">Lithuania</option>
+										<option value="Luxembourg">Luxembourg</option>
+										<option value="Macao">Macao</option>
+										<option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+										<option value="Madagascar">Madagascar</option>
+										<option value="Malawi">Malawi</option>
+										<option value="Malaysia">Malaysia</option>
+										<option value="Maldives">Maldives</option>
+										<option value="Mali">Mali</option>
+										<option value="Malta">Malta</option>
+										<option value="Marshall Islands">Marshall Islands</option>
+										<option value="Martinique">Martinique</option>
+										<option value="Mauritania">Mauritania</option>
+										<option value="Mauritius">Mauritius</option>
+										<option value="Mayotte">Mayotte</option>
+										<option value="Mexico">Mexico</option>
+										<option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+										<option value="Moldova, Republic of">Moldova, Republic of</option>
+										<option value="Monaco">Monaco</option>
+										<option value="Mongolia">Mongolia</option>
+										<option value="Montenegro">Montenegro</option>
+										<option value="Montserrat">Montserrat</option>
+										<option value="Morocco">Morocco</option>
+										<option value="Mozambique">Mozambique</option>
+										<option value="Myanmar">Myanmar</option>
+										<option value="Namibia">Namibia</option>
+										<option value="Nauru">Nauru</option>
+										<option value="Nepal">Nepal</option>
+										<option value="Netherlands">Netherlands</option>
+										<option value="Netherlands Antilles">Netherlands Antilles</option>
+										<option value="New Caledonia">New Caledonia</option>
+										<option value="New Zealand">New Zealand</option>
+										<option value="Nicaragua">Nicaragua</option>
+										<option value="Niger">Niger</option>
+										<option value="Nigeria">Nigeria</option>
+										<option value="Niue">Niue</option>
+										<option value="Norfolk Island">Norfolk Island</option>
+										<option value="Northern Mariana Islands">Northern Mariana Islands</option>
+										<option value="Norway">Norway</option>
+										<option value="Oman">Oman</option>
+										<option value="Pakistan">Pakistan</option>
+										<option value="Palau">Palau</option>
+										<option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+										<option value="Panama">Panama</option>
+										<option value="Papua New Guinea">Papua New Guinea</option>
+										<option value="Paraguay">Paraguay</option>
+										<option value="Peru">Peru</option>
+										<option value="Philippines">Philippines</option>
+										<option value="Pitcairn">Pitcairn</option>
+										<option value="Poland">Poland</option>
+										<option value="Portugal">Portugal</option>
+										<option value="Puerto Rico">Puerto Rico</option>
+										<option value="Qatar">Qatar</option>
+										<option value="Reunion">Reunion</option>
+										<option value="Romania">Romania</option>
+										<option value="Russian Federation">Russian Federation</option>
+										<option value="Rwanda">Rwanda</option>
+										<option value="Saint Helena">Saint Helena</option>
+										<option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+										<option value="Saint Lucia">Saint Lucia</option>
+										<option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+										<option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+										<option value="Samoa">Samoa</option>
+										<option value="San Marino">San Marino</option>
+										<option value="Sao Tome and Principe">Sao Tome and Principe</option>
+										<option value="Saudi Arabia">Saudi Arabia</option>
+										<option value="Senegal">Senegal</option>
+										<option value="Serbia">Serbia</option>
+										<option value="Seychelles">Seychelles</option>
+										<option value="Sierra Leone">Sierra Leone</option>
+										<option value="Singapore">Singapore</option>
+										<option value="Slovakia">Slovakia</option>
+										<option value="Slovenia">Slovenia</option>
+										<option value="Solomon Islands">Solomon Islands</option>
+								</select>
+									
+								<h4>Timezone</h4>
+								<span class="display-name-text">Make sure this is accurate to access the best rooms and improve recommendations.</span>
+								<select id="Timezone" name="Timezone" class="profile-input-name">
+										{% if user.timezone %}
+											<option value="" selected disabled>{{user.timezone}}</option>
+										{% else %}
+											<option value="" selected disabled>Select timezone</option>
+										{% endif %}
+											<option value="Cape Verde">Cape Verde Time</option>
+											<option value="UTC/GMT + 1">West Africa UTC/GMT + 1</option>
+											<option value="UTC/GMT + 2">Central Africa UTC/GMT + 2</option>
+											<option value="UTC/GMT + 3">East Africa UTC/GMT + 3</option>
+											<option value="UTC/GMT + 4">Seychelles UTC/GMT + 4</option>
+								</select>
+							</div>
+							<div id="studies-interests">
+								<h3>Studies & Interests</h3>
+								<h4>School Level</h4>
+								<span class="display-name-text">Choose the one that applies to you best.</span>
+								<select class="profile-input-name" name="schoolLevel">
+									{% if user.schoolLevel %}
+										<option value="" selected disabled>{{user.schoolLevel}}</option>
+									{% else %}
+										<option value="" selected disabled>Select shool level</option>
+									{% endif %}
+										<option value="professional">👨‍✈️ Professional </option>
+										<option value="Postgraduate">🧑🏻‍🎓 Postgraduate</option>
+										<option value="College">📕 College</option>
+										<option value="High School">📘 High School </option>
+										<option value="Middle School">📗 Middle School</option>
+								</select>
+								<h4>Area of Study/Work</h4>
+								<span class="display-name-text">Choose the one that applies to you best.</span>
+								<input class="profile-input-name" type="text"/>
+								<h4>Interests</h4>
+								<span class="display-name-text">Express yourself! You can add up to 8 interests.</span>
+								<div id="8-interext">
+									<div id="selected-interests">
+										{% if user.interests %}
+											{% for i in user.interests %}
+											<div>{{i}}</div>
+											{% endfor %}
+										{% endif %}
+									</div>
+										<select id="interest-for-user" name="interest">
+											<option value="" selected disabled>➕</option>
+											<option value="🎵 Rock">🎵 Rock</option>
+											<option value="🎵 Jazz">🎵 Jazz</option>
+											<option value="🎵 Lofi">🎵 Lofi</option>
+											<option value="🎵 Country">🎵 Country</option>
+											<option value="🎵 Classical">🎵 Classical</option>
+											<option value="🎵 Pop">🎵 Pop</option>
+											<option value="🎵 Piano">🎵 Piano</option>
+											<option value="🎵 Guitar">🎵 Guitar</option>
+											<option value="🎵 Taylor Swift">🎵 Taylor Swift</option>
+											<option value="🎵 Drake">🎵 Drake</option>
+											<option value="🎵 Billie Elish">🎵 Billie Elish</option>
+											<option value="🎵 Electronic">🎵 Electronic</option>
+											<option value="🎙️ Podcast">🎙️ Podcast</option>
+											<option value="👨‍🍳 Cooking">👨‍🍳 Cooking</option>
+											<option value="✍️ Drawing">✍️ Drawing</option>
+											<option value="🏎️ Cars">🏎️ Cars</option>
+											<option value="🍎 Health">🍎 Health</option>
+											<option value="📷 photography">📷 photography</option>
+										</select>
+								</div>
+							</div>
+							<div class="save-discard-cngs">
+								<p>Careful - you have some unsaved changes!</p>
+								<div id="sdc-reset">Reset</div>
+								<button id="sdc-save" type="submit">Save Changes</button>
+							</div>
+						</form>
+					</div>
+					<div id="user-profile-account-settings">
+						<h3>Account Settings</h3>
+						<div id="account-settings-main-container">
+							<span id="asmc-ue"><h4>Username</h4><h4>Edit</h4></span>
+							<input id="asmc-ue-input" placeholder="{{user.username}}" type="text" name=""/>
+							<h4>Phone Number</h4>
+							<span class="display-name-text">Add your phone number to recover your account if you get locked out.</span>
+							<button id="add-phone">Add Phone</button>
+							<h4>Account Deletion</h4>
+							<span class="display-name-text">Deleting your account cannot be undone.</span>
+							<button id="delete-account" onclick="delAccount()">Delete Account</button>
+
+							<div id="delete-account-window">
+								<div id="delete-account-window-header">
+									<h2>Delete Account?</h2>
+									<div class="ipnh-x1"><i class="fa-solid fa-x"></i></div>
+								</div>
+								<p id="dawcode">
+									Are you sure you wish to delete your account? This action <br>
+									&emsp;cannot be undone. You will still be able to create a new<br>
+									 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;account.
+								</p>
+								<div id="daw-btns">
+									<button>Nevermind</button>
+									<button>Delete Account</button>
+								</div>
+							</div>
+
+							<div id="input-phone-number">
+
+								<div id="input-phone-number-header">
+									<h2>Enter a Phone Number</h2>
+									<div class="ipnh-x"><i class="fa-solid fa-x"></i></div>
+								</div>
+								<p id="pnvcode">
+								  &emsp;We will send you a text with a verification code.<br>
+								  Please note, you can only use a phone number on<br>
+								  &emsp;&emsp;&emsp;&emsp;&emsp;one account at a time.
+								</p>
+								<div id="add-pn-container">
+									<select id="country-pn-codes" name="country code">
+											<option data-countryCode="KE" value="254" Selected>KE (+254)</option>
+											<option data-countryCode="US" value="1">US (+1)</option>
+											<option data-countryCode="DZ" value="213">Algeria (+213)</option>
+											<option data-countryCode="AD" value="376">Andorra (+376)</option>
+											<option data-countryCode="AO" value="244">Angola (+244)</option>
+											<option data-countryCode="AI" value="1264">Anguilla (+1264)</option>
+											<option data-countryCode="AG" value="1268">Antigua &amp; Barbuda (+1268)</option>
+											<option data-countryCode="AR" value="54">Argentina (+54)</option>
+											<option data-countryCode="AM" value="374">Armenia (+374)</option>
+											<option data-countryCode="AW" value="297">Aruba (+297)</option>
+											<option data-countryCode="AU" value="61">Australia (+61)</option>
+											<option data-countryCode="AT" value="43">Austria (+43)</option>
+											<option data-countryCode="AZ" value="994">Azerbaijan (+994)</option>
+											<option data-countryCode="BS" value="1242">Bahamas (+1242)</option>
+											<option data-countryCode="BH" value="973">Bahrain (+973)</option>
+											<option data-countryCode="BD" value="880">Bangladesh (+880)</option>
+											<option data-countryCode="BB" value="1246">Barbados (+1246)</option>
+											<option data-countryCode="BY" value="375">Belarus (+375)</option>
+											<option data-countryCode="BE" value="32">Belgium (+32)</option>
+											<option data-countryCode="BZ" value="501">Belize (+501)</option>
+											<option data-countryCode="BJ" value="229">Benin (+229)</option>
+											<option data-countryCode="BM" value="1441">Bermuda (+1441)</option>
+											<option data-countryCode="BT" value="975">Bhutan (+975)</option>
+											<option data-countryCode="BO" value="591">Bolivia (+591)</option>
+											<option data-countryCode="BA" value="387">Bosnia Herzegovina (+387)</option>
+											<option data-countryCode="BW" value="267">Botswana (+267)</option>
+											<option data-countryCode="BR" value="55">Brazil (+55)</option>
+											<option data-countryCode="BN" value="673">Brunei (+673)</option>
+											<option data-countryCode="BG" value="359">Bulgaria (+359)</option>
+											<option data-countryCode="BF" value="226">Burkina Faso (+226)</option>
+											<option data-countryCode="BI" value="257">Burundi (+257)</option>
+											<option data-countryCode="KH" value="855">Cambodia (+855)</option>
+											<option data-countryCode="CM" value="237">Cameroon (+237)</option>
+											<option data-countryCode="CA" value="1">Canada (+1)</option>
+											<option data-countryCode="CV" value="238">Cape Verde Islands (+238)</option>
+											<option data-countryCode="KY" value="1345">Cayman Islands (+1345)</option>
+											<option data-countryCode="CF" value="236">Central African Republic (+236)</option>
+											<option data-countryCode="CL" value="56">Chile (+56)</option>
+											<option data-countryCode="CN" value="86">China (+86)</option>
+											<option data-countryCode="CO" value="57">Colombia (+57)</option>
+											<option data-countryCode="KM" value="269">Comoros (+269)</option>
+											<option data-countryCode="CG" value="242">Congo (+242)</option>
+											<option data-countryCode="CK" value="682">Cook Islands (+682)</option>
+											<option data-countryCode="CR" value="506">Costa Rica (+506)</option>
+											<option data-countryCode="HR" value="385">Croatia (+385)</option>
+											<option data-countryCode="CU" value="53">Cuba (+53)</option>
+											<option data-countryCode="CY" value="90392">Cyprus North (+90392)</option>
+											<option data-countryCode="CY" value="357">Cyprus South (+357)</option>
+											<option data-countryCode="CZ" value="42">Czech Republic (+42)</option>
+											<option data-countryCode="DK" value="45">Denmark (+45)</option>
+											<option data-countryCode="DJ" value="253">Djibouti (+253)</option>
+											<option data-countryCode="DM" value="1809">Dominica (+1809)</option>
+											<option data-countryCode="DO" value="1809">Dominican Republic (+1809)</option>
+											<option data-countryCode="EC" value="593">Ecuador (+593)</option>
+											<option data-countryCode="EG" value="20">Egypt (+20)</option>
+											<option data-countryCode="SV" value="503">El Salvador (+503)</option>
+											<option data-countryCode="GQ" value="240">Equatorial Guinea (+240)</option>
+											<option data-countryCode="ER" value="291">Eritrea (+291)</option>
+											<option data-countryCode="EE" value="372">Estonia (+372)</option>
+											<option data-countryCode="ET" value="251">Ethiopia (+251)</option>
+											<option data-countryCode="FK" value="500">Falkland Islands (+500)</option>
+											<option data-countryCode="FO" value="298">Faroe Islands (+298)</option>
+											<option data-countryCode="FJ" value="679">Fiji (+679)</option>
+											<option data-countryCode="FI" value="358">Finland (+358)</option>
+											<option data-countryCode="FR" value="33">France (+33)</option>
+											<option data-countryCode="GF" value="594">French Guiana (+594)</option>
+											<option data-countryCode="PF" value="689">French Polynesia (+689)</option>
+											<option data-countryCode="GA" value="241">Gabon (+241)</option>
+											<option data-countryCode="GM" value="220">Gambia (+220)</option>
+											<option data-countryCode="GE" value="7880">Georgia (+7880)</option>
+											<option data-countryCode="DE" value="49">Germany (+49)</option>
+											<option data-countryCode="GH" value="233">Ghana (+233)</option>
+											<option data-countryCode="GI" value="350">Gibraltar (+350)</option>
+											<option data-countryCode="GR" value="30">Greece (+30)</option>
+											<option data-countryCode="GL" value="299">Greenland (+299)</option>
+											<option data-countryCode="GD" value="1473">Grenada (+1473)</option>
+											<option data-countryCode="GP" value="590">Guadeloupe (+590)</option>
+											<option data-countryCode="GU" value="671">Guam (+671)</option>
+											<option data-countryCode="GT" value="502">Guatemala (+502)</option>
+											<option data-countryCode="GN" value="224">Guinea (+224)</option>
+											<option data-countryCode="GW" value="245">Guinea - Bissau (+245)</option>
+											<option data-countryCode="GY" value="592">Guyana (+592)</option>
+											<option data-countryCode="HT" value="509">Haiti (+509)</option>
+											<option data-countryCode="HN" value="504">Honduras (+504)</option>
+											<option data-countryCode="HK" value="852">Hong Kong (+852)</option>
+											<option data-countryCode="HU" value="36">Hungary (+36)</option>
+											<option data-countryCode="IS" value="354">Iceland (+354)</option>
+											<option data-countryCode="IN" value="91">India (+91)</option>
+											<option data-countryCode="ID" value="62">Indonesia (+62)</option>
+											<option data-countryCode="IR" value="98">Iran (+98)</option>
+											<option data-countryCode="IQ" value="964">Iraq (+964)</option>
+											<option data-countryCode="IE" value="353">Ireland (+353)</option>
+											<option data-countryCode="IL" value="972">Israel (+972)</option>
+											<option data-countryCode="IT" value="39">Italy (+39)</option>
+											<option data-countryCode="JM" value="1876">Jamaica (+1876)</option>
+											<option data-countryCode="JP" value="81">Japan (+81)</option>
+											<option data-countryCode="JO" value="962">Jordan (+962)</option>
+											<option data-countryCode="KZ" value="7">Kazakhstan (+7)</option>
+											<option data-countryCode="KE" value="254">Kenya (+254)</option>
+											<option data-countryCode="KI" value="686">Kiribati (+686)</option>
+											<option data-countryCode="KP" value="850">Korea North (+850)</option>
+											<option data-countryCode="KR" value="82">Korea South (+82)</option>
+											<option data-countryCode="KW" value="965">Kuwait (+965)</option>
+											<option data-countryCode="KG" value="996">Kyrgyzstan (+996)</option>
+											<option data-countryCode="LA" value="856">Laos (+856)</option>
+											<option data-countryCode="LV" value="371">Latvia (+371)</option>
+											<option data-countryCode="LB" value="961">Lebanon (+961)</option>
+											<option data-countryCode="LS" value="266">Lesotho (+266)</option>
+											<option data-countryCode="LR" value="231">Liberia (+231)</option>
+											<option data-countryCode="LY" value="218">Libya (+218)</option>
+											<option data-countryCode="LI" value="417">Liechtenstein (+417)</option>
+											<option data-countryCode="LT" value="370">Lithuania (+370)</option>
+											<option data-countryCode="LU" value="352">Luxembourg (+352)</option>
+											<option data-countryCode="MO" value="853">Macao (+853)</option>
+											<option data-countryCode="MK" value="389">Macedonia (+389)</option>
+											<option data-countryCode="MG" value="261">Madagascar (+261)</option>
+											<option data-countryCode="MW" value="265">Malawi (+265)</option>
+											<option data-countryCode="MY" value="60">Malaysia (+60)</option>
+											<option data-countryCode="MV" value="960">Maldives (+960)</option>
+											<option data-countryCode="ML" value="223">Mali (+223)</option>
+											<option data-countryCode="MT" value="356">Malta (+356)</option>
+											<option data-countryCode="MH" value="692">Marshall Islands (+692)</option>
+											<option data-countryCode="MQ" value="596">Martinique (+596)</option>
+											<option data-countryCode="MR" value="222">Mauritania (+222)</option>
+											<option data-countryCode="YT" value="269">Mayotte (+269)</option>
+											<option data-countryCode="MX" value="52">Mexico (+52)</option>
+											<option data-countryCode="FM" value="691">Micronesia (+691)</option>
+											<option data-countryCode="MD" value="373">Moldova (+373)</option>
+											<option data-countryCode="MC" value="377">Monaco (+377)</option>
+											<option data-countryCode="MN" value="976">Mongolia (+976)</option>
+											<option data-countryCode="MS" value="1664">Montserrat (+1664)</option>
+											<option data-countryCode="MA" value="212">Morocco (+212)</option>
+											<option data-countryCode="MZ" value="258">Mozambique (+258)</option>
+											<option data-countryCode="MN" value="95">Myanmar (+95)</option>
+											<option data-countryCode="NA" value="264">Namibia (+264)</option>
+											<option data-countryCode="NR" value="674">Nauru (+674)</option>
+											<option data-countryCode="NP" value="977">Nepal (+977)</option>
+											<option data-countryCode="NL" value="31">Netherlands (+31)</option>
+											<option data-countryCode="NC" value="687">New Caledonia (+687)</option>
+											<option data-countryCode="NZ" value="64">New Zealand (+64)</option>
+											<option data-countryCode="NI" value="505">Nicaragua (+505)</option>
+											<option data-countryCode="NE" value="227">Niger (+227)</option>
+											<option data-countryCode="NG" value="234">Nigeria (+234)</option>
+											<option data-countryCode="NU" value="683">Niue (+683)</option>
+											<option data-countryCode="NF" value="672">Norfolk Islands (+672)</option>
+											<option data-countryCode="NP" value="670">Northern Marianas (+670)</option>
+											<option data-countryCode="NO" value="47">Norway (+47)</option>
+											<option data-countryCode="OM" value="968">Oman (+968)</option>
+											<option data-countryCode="PW" value="680">Palau (+680)</option>
+											<option data-countryCode="PA" value="507">Panama (+507)</option>
+											<option data-countryCode="PG" value="675">Papua New Guinea (+675)</option>
+											<option data-countryCode="PY" value="595">Paraguay (+595)</option>
+											<option data-countryCode="PE" value="51">Peru (+51)</option>
+											<option data-countryCode="PH" value="63">Philippines (+63)</option>
+											<option data-countryCode="PL" value="48">Poland (+48)</option>
+											<option data-countryCode="PT" value="351">Portugal (+351)</option>
+											<option data-countryCode="PR" value="1787">Puerto Rico (+1787)</option>
+											<option data-countryCode="QA" value="974">Qatar (+974)</option>
+											<option data-countryCode="RE" value="262">Reunion (+262)</option>
+											<option data-countryCode="RO" value="40">Romania (+40)</option>
+											<option data-countryCode="RU" value="7">Russia (+7)</option>
+											<option data-countryCode="RW" value="250">Rwanda (+250)</option>
+											<option data-countryCode="SM" value="378">San Marino (+378)</option>
+											<option data-countryCode="ST" value="239">Sao Tome &amp; Principe (+239)</option>
+											<option data-countryCode="SA" value="966">Saudi Arabia (+966)</option>
+											<option data-countryCode="SN" value="221">Senegal (+221)</option>
+											<option data-countryCode="CS" value="381">Serbia (+381)</option>
+											<option data-countryCode="SC" value="248">Seychelles (+248)</option>
+											<option data-countryCode="SL" value="232">Sierra Leone (+232)</option>
+											<option data-countryCode="SG" value="65">Singapore (+65)</option>
+											<option data-countryCode="SK" value="421">Slovak Republic (+421)</option>
+											<option data-countryCode="SI" value="386">Slovenia (+386)</option>
+											<option data-countryCode="SB" value="677">Solomon Islands (+677)</option>
+											<option data-countryCode="SO" value="252">Somalia (+252)</option>
+											<option data-countryCode="ZA" value="27">South Africa (+27)</option>
+											<option data-countryCode="ES" value="34">Spain (+34)</option>
+											<option data-countryCode="LK" value="94">Sri Lanka (+94)</option>
+											<option data-countryCode="SH" value="290">St. Helena (+290)</option>
+											<option data-countryCode="KN" value="1869">St. Kitts (+1869)</option>
+											<option data-countryCode="SC" value="1758">St. Lucia (+1758)</option>
+											<option data-countryCode="SD" value="249">Sudan (+249)</option>
+											<option data-countryCode="SR" value="597">Suriname (+597)</option>
+											<option data-countryCode="SZ" value="268">Swaziland (+268)</option>
+											<option data-countryCode="SE" value="46">Sweden (+46)</option>
+											<option data-countryCode="CH" value="41">Switzerland (+41)</option>
+											<option data-countryCode="SI" value="963">Syria (+963)</option>
+											<option data-countryCode="TW" value="886">Taiwan (+886)</option>
+											<option data-countryCode="TJ" value="7">Tajikstan (+7)</option>
+											<option data-countryCode="TH" value="66">Thailand (+66)</option>
+											<option data-countryCode="TG" value="228">Togo (+228)</option>
+											<option data-countryCode="TO" value="676">Tonga (+676)</option>
+											<option data-countryCode="TT" value="1868">Trinidad &amp; Tobago (+1868)</option>
+											<option data-countryCode="TN" value="216">Tunisia (+216)</option>
+											<option data-countryCode="TR" value="90">Turkey (+90)</option>
+											<option data-countryCode="TM" value="7">Turkmenistan (+7)</option>
+											<option data-countryCode="TM" value="993">Turkmenistan (+993)</option>
+											<option data-countryCode="TC" value="1649">Turks &amp; Caicos Islands (+1649)</option>
+											<option data-countryCode="TV" value="688">Tuvalu (+688)</option>
+											<option data-countryCode="UG" value="256">Uganda (+256)</option>
+											<!-- <option data-countryCode="GB" value="44">UK (+44)</option> -->
+											<option data-countryCode="UA" value="380">Ukraine (+380)</option>
+											<option data-countryCode="AE" value="971">United Arab Emirates (+971)</option>
+											<option data-countryCode="UY" value="598">Uruguay (+598)</option>
+											<!-- <option data-countryCode="US" value="1">USA (+1)</option> -->
+											<option data-countryCode="UZ" value="7">Uzbekistan (+7)</option>
+											<option data-countryCode="VU" value="678">Vanuatu (+678)</option>
+											<option data-countryCode="VA" value="379">Vatican City (+379)</option>
+											<option data-countryCode="VE" value="58">Venezuela (+58)</option>
+											<option data-countryCode="VN" value="84">Vietnam (+84)</option>
+											<option data-countryCode="VG" value="84">Virgin Islands - British (+1284)</option>
+											<option data-countryCode="VI" value="84">Virgin Islands - US (+1340)</option>
+											<option data-countryCode="WF" value="681">Wallis &amp; Futuna (+681)</option>
+											<option data-countryCode="YE" value="969">Yemen (North)(+969)</option>
+											<option data-countryCode="YE" value="967">Yemen (South)(+967)</option>
+											<option data-countryCode="ZM" value="260">Zambia (+260)</option>
+											<option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
+									</select>
+									<input id="phone-number-ic"></input>
+								</div>
+								<button id="sendCode-btn">Send Code</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<script type="text/javascript">
+
+			function adjustWidth (input) {
+					const maxLength = 100;
+
+					if (input.value.length == 0) {
+						input.style.height = initial
+					}
+					else if (input.value.length > maxLength){
+						input.style.height = (5*2 + "px");
+					}
+				}
+
+			var socketio = io();
+			var interests = [];
+
+			/*const uploadButton = document.getElementById('fileUpload');
+			const fileInput = document.getElementById('fileInput');
+
+			uploadButton.addEventListener('click', () => {
+				fileInput.click();
+				fileInput.addEventListener('change', (event) => {
+					const selectedFile = event.target.files[0];
+					console.log('Selected file:', selectedFile.name);
+				});
+			});*/
+
+			function delAccount() { 
+            	const element = document 
+                	.querySelector('#delete-account-window'); 
+            	element.classList.toggle('visible');  
+        	} 
+
+        	function setProfile() {
+        		const element = document 
+                	.querySelector('#user-user-profile'); 
+            	element.classList.toggle('visible');
+        	}
+
+			$(document).ready( function () {
+				$(".category-public").click(function () {
+					$("html").css("--public-bg-color", "blue");
+					$("html").css("--friends-bg-color", "transparent");
+				});
+				$(".category-friends").click(function () {
+					$("html").css("--public-bg-color", "transparent");
+					$("html").css("--friends-bg-color", "blue");
+				})
+
+				$('#posts-text').on({input: function(){
+					var totalHeight = $(this).prop('scrollHeight') - parseInt($(this).css('padding-top')) - parseInt($(this).css('padding-bottom'));
+					$(this).css({'height':totalHeight});
+				}});
+
+
+				$(".fa-chevron-left").click(function () {
+					$(".user-profile-form").css("display", "none")
+				});
+
+				$(".clickhere").click(function () {
+					$(".user-profile-form").css("display", "flex");
+				});
+
+				$("#fileUpload").click(function (event) {
+					event.preventDefault()
+					$("#fileInput").click()
+
+
+					$("#fileInput").change(function (event) {
+
+						let file = event.target.files[0]
+						let reader = new FileReader()
+
+
+						/*$.ajax({
+							type: "POST",
+							url: '/echetra/resource/post',
+							data: JSON.stringify({"Ok": "Yes"}),
+							dataType: "json",
+							contentType: "application/json",
+							success: function (data) {
+								console.log(JSON.stringify(data));
+							},
+						});*/
+			
+						let el = $("#pi");
+						el.css("border-radius", "10px 10px 10px 10px");
+						el.css("margin-bottom", "20px");
+						el.css("box-shadow", "1px 1px 1px 1px");
+
+						reader.onload = function (event) {
+							el.attr('width', "100%");
+							el.attr("src", event.target.result);
+						};
+
+						/*let x = $("<button id='xbtn'><h2>&times</h2></button>");
+						$("#posts-text-media").prepend(x)*/
+						$("#xbtn").show();
+						reader.readAsDataURL(file);
+					});
+
+				});
+
+			$("#posts-text-media").on('click', '#xbtn', function (e) {
+				$("#pi").attr("src", "");
+				$("#pi").css("all", "unset");
+				$("#posts-text-media").css("height", "0");
+				$("#posts-text-media").css("height", "auto");
+				$("#xbtn").hide();
+				/*$("#posts-text-media").empty();*/
+			});
+
+			function createPost (p) {
+				if (p.media) {
+					let post_1 = $(`
+								<div class="post">
+										<div class="post-left">
+											<div class="post-user"></div>
+										</div>
+										<div class="post-detante">
+											<div class="community-user-url">
+												<a href="/echetra/${p.user}/status/${p.id}">${p.user}</a>
+												<a href="/echetra/${p.user}/status/${p.id}"><div class="diamond"></div></a>
+											</div>
+											<span style="margin-bottom: 10px">${p.text}</span>
+												<div class="post-image">
+													<img src="${p.media}"></img>
+												</div>
+											<div class="post-interaction">
+												<i class="fa-regular fa-message"></i>
+												<i class="fa-solid fa-retweet"></i>
+												<i class="fa-regular fa-heart"></i>
+											</div>
+										</div>
+								</div>`);
+					$("#posts-display").children(":nth-child(2)").after(post_1);
+				} else {
+					let post_1 = $(`
+									<div class="post">
+										<div class="post-left">
+											<div class="post-user"></div>
+										</div>
+										<div class="post-detante">
+											<div class="community-user-url">
+												<a href="/echetra/${p.user}/status/${p.id}">${p.user}</a>
+												<a href="/echetra/${p.user}/status/${p.id}"><div class="diamond"></div></a>
+											</div>
+											<span style="margin-bottom: 10px">${p.text}</span>
+											<div class="post-interaction">
+												<i class="fa-regular fa-message"></i>
+												<i class="fa-solid fa-retweet"></i>
+												<i class="fa-regular fa-heart"></i>
+											</div>
+										</div>
+									</div>`); 
+							$("#posts-display").children(":nth-child(2)").after(post_1);
+				}
+			}
+
+			socketio.on("main_post", function (data) {
+				createPost(data);
+			});
+
+			$("#upload-form").on('submit', function (event) {
+				event.preventDefault();
+				var form_data = new FormData(this);
+
+				let el = $("#pi");
+				el.css("all", "unset");
+				el.attr("src", "");
+				$("#xbtn").remove();
+				$("#posts-text-media").css("height", "0");
+
+
+				$.ajax({
+					type: 'POST',
+					url: "/echetra/resource/post",
+					data: form_data,
+					cache: false,
+					processData: false,
+					contentType: false,
+					success: function (data) {
+						socketio.emit("post", data);
+						$("#reset").click()
+					}
+				})
+            });
+
+            $("#bar-profile").click(function () {
+            	$(".user-user-profile-cover").css("display", "flex");
+            	$("#user-user-profile").css("display", "flex");
+            })
+
+            $(".user-user-profile-cover").click(function () {
+            	const display = $("#user-user-profile").css("display");
+            	if (display === "flex") {
+            		setProfile();
+            		$(".user-user-profile-cover").css("display", "none");	
+            	}
+
+            })
+
+            $("#settings-profile").click(function () {
+            	$("#user-profile-main-form").css("display", "flex");
+            	$("#user-profile-account-settings").css("display", "none")
+            });
+
+            $("#settings-account").click(function () {
+            	$("#user-profile-account-settings").css("display", "flex");
+            	$("#user-profile-main-form").css("display", "none");
+            });
+
+            $("#profile-banner1").click(function () {
+            		$("#profile-img-input").click();
+            });
+
+            $("#add-phone").click(function () {
+            	$("#input-phone-number").css("display", "flex");
+            });
+
+
+            $(".ipnh-x").click(function () {
+            	$("#input-phone-number").css("display", "none");
+            });
+
+            $(".ipnh-x1").click(function () {
+            	$("#delete-account").click();
+            });
+
+            $("#interest-for-user").change(function () {
+            	if ($(this).val() !== "➕") {
+            		value = $(this).val();
+            		interests.push(value);
+            		$(this).val("");
+
+            		$("#selected-interests").append(`<div>${value}</div>`)
+            	} 
+
+            	console.log(interests);
+            });
+
+            $("#user-profile-theform").on("change", ":input", function () {
+            	$(".save-discard-cngs").css("bottom", "20px");
+            });
+
+            $("#sdc-reset").click(function () {
+            	$(".save-discard-cngs").css("bottom", "-90px");
+            	$(':input', '#user-profile-theform')
+            		.not(':button, :submit, :reset, :hidden')
+            		.val('')
+            		.prop('checked', false)
+            		.prop('selected', false);
+            });
+
+            $("#user-profile-theform").on("submit", function (event) {
+            	event.preventDefault();
+
+            	let fData = new FormData(this);
+            	fData.append('user_id', "{{user.id}}");
+            	fData.append('interests', interests);
+
+            	/*for (const  value of fData.values()) {
+    				console.log(value);
+				}*/
+
+				$("#sdc-save").click(function () {
+
+					$.ajax({
+						type: 'PUT',
+						url: `/Echetra/user/{{user.id}}`,
+						data: fData,
+						cache: false,
+						processData: false,
+						contentType: false,
+						success: function (data) {
+							console.log(data)
+						}
+					})            	
+            	});
+            });
+
+            $("")
+
+            $("#upo-posts").click(function () {
+
+            	$.get(`/echetra/r/u/{{user_id}}/posts`, function (data, status) {
+            		console.log(data)
+            		$("#up-posts").empty()
+            		$("#up-about").remove();
+
+            		data.forEach(function (p) {
+
+            				$("#up-posts").append(`
+            					<div class="min-post" id=${p.id}>
+										<div class="min-post-header">Posted in Community&emsp;.${p.created_at}</div>
+										<div class="min-post-text">
+											${p.text}<br>
+										</div>
+										<a style="font-size: 12px; cursor: pointer;">See more ...</a>
+										<div class="post-interaction">
+												<i class="fa-regular fa-message"></i>
+												<i class="fa-solid fa-retweet"></i>
+												<i class="fa-regular fa-heart"></i>
+										</div>
+								</div>
+            				`);
+            		});
+            	});
+            });
+
+            $("#upo-about").click(function () {
+
+            	$("#up-posts").empty();
+            	$("#up-about").remove();
+
+            	$("#up-posts").append(
+
+            	`<div id="up-about">
+						<h4>ABOUT ME</h4>
+						{% if user.description %}
+							<p>{{user.description}}</p>
+						{% else %}
+							<p>Uh oh, there's nothing here yet &#128517 <a href="#" class="clickhere">click here to fill it in</a></p>
+						{% endif %}
+						<h4>PROJECT STATS</h4>
+						<div class="up-about-ps">
+							<div id="upaps-level">
+								⭐ Level
+								{% if user.level %}
+									<span>{{user.level}}</span>
+								{% else %}
+									 <span>1</span>
+								{% endif %}
+							</div>
+							<div id="upaps-focus">
+								<img src="../../../static/images/clockp.png.png" width="25px" height="25px"></img>
+								Focus Appx
+								{% if user.focus %}
+								<span>{{user.focus}}</span>
+								{% else %}
+								<Span>0</Span>
+								{% endif %}
+							</div>
+							<div id="upaps-streak">
+								<img src="../../../static/images/fire.png" width="25px" height="25px"></img>
+								No projects
+								{% if user.projects %}
+									<span>{{user.projects.no}}</span>
+								{% else %}
+									<span>0</span>
+								{% endif %}
+							</div>
+						</div>
+						<h4>INTERESTS</h4>
+						{% if user.interests %}
+							<div id="selected-interests">
+							{% for i in user.interests %}
+							<p>{{i}}</p>
+							{% endfor %}
+							</div>
+						{% endif %}
+					</div>`
+					)
+            });
+
+            $("#upo-projects").click(function () {
+            	$("#up-about").remove();
+
+            	$.get(`/echetra/r/u/{{user.id}}/p`, function (data) {
+            		console.log(data)
+            		$("#up-posts").empty();
+
+            		data.forEach(function (d) {
+            			$("#up-posts").append(
+            				`
+            				<div id="up-projects">
+            					<div style="font-size: 17px;font-weight:bold;">${d.name}&emsp;.${d.created_at}</div>
+            					<i style="font-size: 12px;font-weight:bold;">type: ${d.category}</i>
+            				</div>
+            				`
+            			);
+            		});
+            	})
+
+            });
+
+            $("#upo-community").click(function () {
+            	$("#up-posts").empty();
+            	$("#up-about").remove();
+
+            	$("#up-posts").append(
+            		`
+            		<div id="up-community">
+            			<i class="fa-solid fa-triangle-exclamation fa-beat fa-2xl" style="color: #FFD43B;"></i>
+            			<span style="font-size: 13px;">Not yet Available!!! But It's being worked on by the engineers</span>
+            		</div>
+            		`
+            		);
+            });
+
+            $("#upo-comments").click(function () {
+            	$("#up-posts").empty();
+            	$("#up-about").remove();
+
+            	$("#up-posts").append(
+            		`
+            		<div id="up-community">
+            			<i class="fa-solid fa-triangle-exclamation fa-beat fa-2xl" style="color: #FFD43B;"></i>
+            			<span style="font-size: 13px;">Not yet Available!!! But It's being worked on by the engineers</span>
+            		</div>
+            		`
+            		);
+            });
+
+            clockUpdate();
+  				setInterval(clockUpdate, 1000);
+			});
+
+			function clockUpdate() {
+  					let date = new Date();
+  					$('.digital-clock').css({'color': '#fff', 'text-shadow': '0 0 6px #ff0'});
+  					function addZero(x) {
+    					if (x < 10) {
+      						return x = '0' + x;
+   						 } else {
+     						 return x;
+    					}
+  			}
+
+  			function twelveHour(x) {
+    			if (x > 12) {
+      				return x = x - 12;
+    			} else if (x == 0) {
+      				return x = 12;
+    			} else {
+      				return x;
+    			}
+  			}
+
+			let h = addZero(twelveHour(date.getHours()));
+			let m = addZero(date.getMinutes());
+			let s = addZero(date.getSeconds());
+
+			$('.digital-clock').text(h + ':' + m + ':' + s)
+			}
+
+		</script>
+	</body>
+	</html>

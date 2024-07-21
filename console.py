@@ -5,9 +5,11 @@ from models.base_model import BaseModel
 import shlex
 from models.user import User
 from models.message import Message
+from models.post import Post
+from models.message_session import Msession
 from models.projects import Project
 
-classes = {"BaseModel": BaseModel, "Project": Project, "User": User, "Message": Message}
+classes = {"BaseModel": BaseModel, "Post": Post,"Project": Project, "User": User, "Msession": Msession,"Message": Message}
 
 
 class EchetraCommand(cmd.Cmd):
@@ -148,6 +150,25 @@ class EchetraCommand(cmd.Cmd):
                     string += f"Message:\n\t{message['message']}\n"
 
                 print(string)
+
+    def do_delete_all(self, arg):
+        """delete all class objects"""
+        args = arg.split()
+        if len(args) == 0:
+            print("** class missing**")
+        elif len(args) < 1:
+            print("** instance missing **")
+        else:
+            if args[0] in classes:
+                objs = storage.all(classes[args[0]])
+
+                for obj in objs.values():
+                        obj.delete()
+                else:
+                    print("successful")
+            else:
+                print("** class missing **")
+
 
     def do_quit(self, arg):
         """quits the console"""

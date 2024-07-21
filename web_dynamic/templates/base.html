@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Echetra</title>
+		
+		<link rel="stylesheet" href="../../../static/styles/layout.css?{{cache_id}}"/>
+		<link rel="stylesheet" href="../../../static/styles/wrapper3.css?{{cache_id}}"/>
+		<link rel="stylesheet" href="../../../static/styles/community.css?{{cache_id}}">
+		<link rel="stylesheet" href="../../../static/styles/profile.css?{{cache_id}}">
+		<!--link rel="stylesheet" href="../../../static/styles/members_community.css?{{cache_id}}"/-->
+
+		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js" integrity="sha512-11t8Q+vY9JlCrr+PveZKTYJq8n7O09Y5X/pk/aMd3vJugSvu4xOunGEUzaADqL3I8cZKE/pBwwCfXzDkRJh2sQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
+		<script src="../../../static/scripts/home.js?{{cache_id}}"></script>
+		<script src="../../../static/scripts/profile.js?{{cache_id}}"></script>
+		<script type="text/javascript" src="../../../static/scripts/profile.js?{{cache_id}}"></script>
+	</head>
+	<body>
+		<div class="wrapper">
+
+			<div id="title">
+				<p style="color: white;">Echetra for Engidineers</p> 
+			</div>
+			<div class="main wrapper2">
+				<div class="aside">
+					<a><div class="elogo-wrapper"><img class="elogo-wrapper" src="/static/images/elogo.png"></img></div></a>
+					<hr class="hlil-line">
+					<a href="/echetra/home?{{cache_id}}" id="home-link"><div class="bar home">
+						<i class="fa-solid fa-house fa-xl" ></i>
+					</div></a>
+					<a href="/echetra/projects/?{{cache_id}}"><div class="bar project">
+						<i class="fa-solid fa-bars-progress fa-xl"></i>
+					</div></a>
+					<!--div class="bar study">
+						<i class="fa-solid fa-globe fa-xl"></i>
+					</div-->
+					<a href="/echetra/community?{{cache_id}}"><div class="bar community">
+						<i class="fa-solid fa-people-arrows fa-xl"></i>  
+					</div></a>
+					<a href="/echetra/chess?{{cache_id}}"><div class="bar chess">
+						<i class="fa-solid fa-chess fa-xl"></i>
+					</div></a>
+					<hr class="hlil-line">
+					<div class="bar profile">
+						<i class="fa-solid fa-user fa-xl"></i>
+					</div>
+				</div>
+				<div class="main wrapper3">
+					{% block content %} {% endblock %}
+				</div>
+			</div>
+					<div class="user-user-profile-cover" ></div>
+					
+									<div id="user-user-profile">
+										<div id="user-user-profile-upper">
+											<div id="user-profile-style">
+												<div id="use-profile-circle">
+													<div id="use-profile-circle-main"></div>
+												</div>
+												<a href="#" class="clickhere" style="margin-left: 530px;margin-top: 20px;"><div class="write-profile"><i class="fa-solid fa-pencil"></div></i></a>
+											</div>
+											<div id="user-profile-style-detante">
+												<div id="user-profile-style-detante-upper">
+												</div>
+												<div id="user-profile-style-detante-lower">
+													<span id="user-profile-detante-name">{{user.username}}</span>
+													<span id="user-profile-detante-carreer">
+														<img  src="../../../static/images/web/book.png" width="18px" height="18px"></img>
+														{% if user.schoolLevel %}
+														<span style="margin-top: 0px;color: #ffffff;font: 13px 'DIGITAL', Helvetica;">{{user.schoolLevel}}</span>
+														{% else %}
+														<span style="margin-top: 0px;color: #ffffff;font: 13px 'DIGITAL', Helvetica;">undetermined</span>
+														{% endif %}
+														<img src="../../../static/images/cyborng.png" width="18px" height="18px"></img>
+														{% if user.work %}
+														<span style="margin-top: 0px;color: #ffffff;font: 13px 'DIGITAL', Helvetica;">{{user.work}}</span>
+														{% else %}
+														<span style="margin-top: 0px;color: #ffffff;font: 13px 'DIGITAL', Helvetica;">undetermined</span>
+														{% endif %}
+
+													</span>
+													<span id="user-profile-detante-time">
+														<i class="fa-regular fa-clock"></i>
+														<div class="digital-clock">00:00:00</div>
+													</span>
+													<span id="user-profile-detante-friends">
+														<i class="fa-solid fa-user-group"></i>
+													</span>
+													<div id="user-profile-outline">
+														<span id="upo-about" style="color: black;">About<div class="span-tapped" id="tapped-about" style="background-color: black;"></div></span>
+														<span id="upo-posts">Posts<div class="span-tapped" id="tapped-post"></div></span>
+														<span id="upo-projects">Projects<div class="span-tapped" id="tapped-project"></div></span>
+														<span id="upo-comments">Comments<div class="span-tapped" id="tapped-comment"></div></span>
+														<span id="upo-community">Community<div class="span-tapped" id="tapped-community"></div></span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div id="user-user-profile-lower">
+											<div id="up-about">
+												<h4>ABOUT ME</h4>
+												{% if user.description %}
+													<p>{{user.description}}</p>
+												{% else %}
+													<p>Uh oh, there's nothing here yet &#128517 <a href="#" class="clickhere">click here to fill it in</a></p>
+												{% endif %}
+												<h4>PROJECT STATS</h4>
+												<div class="up-about-ps">
+													<div id="upaps-level">
+														⭐ Level
+														{% if user.level %}
+															<span>{{user.level}}</span>
+														{% else %}
+															 <span>1</span>
+														{% endif %}
+													</div>
+													<div id="upaps-focus">
+														<img src="../../../static/images/clockp.png.png" width="25px" height="25px"></img>
+														Focus Appx
+														{% if user.focus %}
+														<span>{{user.focus}}</span>
+														{% else %}
+														<Span>0</Span>
+														{% endif %}
+													</div>
+													<div id="upaps-streak">
+														<img src="../../../static/images/fire.png" width="25px" height="25px"></img>
+														No projects
+														{% if user.projects %}
+															<span>{{user.projects.no}}</span>
+														{% else %}
+															<span>0</span>
+														{% endif %}
+													</div>
+												</div>
+												<h4>INTERESTS</h4>
+												{% if user.interests %}
+													<div id="selected-interests">
+													{% for i in user.interests %}
+													<p>{{i}}</p>
+													{% endfor %}
+													</div>
+												{% endif %}
+											</div>
+											<div id="up-posts">
+
+											</div>
+										</div>
+
+									</div>
+
+								<div class="user-profile-form">
+						
+										<div id="user-profile-side-menu">
+											<span id="settings-title"><i class="fa-solid fa-chevron-left"></i>Settings</span>
+											<span id="settings-profile">Profile</span>
+											<span id="settings-account">Account settings</span>
+										</div>
+										<div id="user-profile-main-form">
+											<form id="user-profile-theform" method="POST" enctype="multiple">
+												<h2>Edit Profile</h2>
+												<div id="user-profile-appearence">
+													<h3>Profile Appearence</h3>
+													<h5>Avatar</h5>
+													{% if user.avatar_img %}
+														<div id="user-form-profile-avater">
+															<img src="../../../static/images/{{user.avatar_img}}?{{cache_id}}" style="object-fit: cover;"></img>
+														</div>
+													{% else %}
+														<div id="user-form-profile-avater" style="background-color: {{user.avatar_color}};">
+															{{user.username[0:2].upper()}}
+														</div>
+													{% endif %}
+													<h4>Profile Banner</h4>
+													<div class="profile-banner" id="profile-banner1" style="background-color: {{user.avatar_color}}">
+														<div id="profile-banner-img"><i class="fa-regular fa-image"></i>change</div>
+													</div>
+													<h4>Display Name</h4>
+													<span class="display-name-text">Choose wisely. This is the name people will know you by on Echetra</span>
+													<input class="profile-input-name" type="text" placeholder="{{user.username}}" name="username"></input>
+													<h4>About Me</h4>
+													<span class="display-name-text">Tell your story. This is where you can introduce yourself to the Echetra community</span>
+													{% if user.description %} 
+														<textarea class="profile-banner" id="about-me-textarea" placeholder="{{user.description}}" 
+														style="margin-bottom: 40px" name="description"></textarea>
+													{% else %}
+														<textarea class="profile-banner" id="about-me-textarea" placeholder="e.g. Aspiring doctor 🩺 Looking forward to meet and collaborate with Echetra community in many projects" 
+														style="margin-bottom: 40px" name="description"></textarea>
+													{% endif%}
+													<input type="file" id="profile-img-input" style="display: none;" name="avatar"></input>
+												</div>
+												<div id="user-profile-basicinfo">
+													<h3>Basic Info</h3>
+													<h4>Age</h4>
+													<span class="display-name-text">Make sure this is accurate to access the best rooms and improve recommendations.</span>
+													{% if user.age %}
+														<input class="profile-input-name" type="text" placeholder="{{user.age}}" style="margin-top: 5px;" name="age"></input>
+													{% else %}
+														<input class="profile-input-name" type="text" placeholder="e.g. 18" style="margin-top: 5px;" name="age"></input>
+													{% endif %}
+													<h4>Gender</h4>
+													<span class="display-name-text">These appear on your profile so others know how to refer to you.</span>
+													{% if user.gender %}
+														<select class="profile-input-name" name="gender">
+															<option disabled selected value="">{{user.gender}}</option>
+															<option value="girl">girl</option>
+															<option value="boy">boy</option>
+															<option value="non-binary">non-binary</option>
+														</select>
+													{% else %}
+														<select class="profile-input-name" name="gender">
+															<option disabled selected value="">{{user.gender}}</option>
+															<option value="girl">girl</option>
+															<option value="boy">boy</option>
+															<option value="non-binary">non-binary</option>
+														</select>
+													{% endif %}
+													<h4>Country</h4>
+													<span class="display-name-text">Make sure this is accurate to access the best rooms and improve recommendations.</span>
+													
+													<h4>Timezone</h4>
+													<span class="display-name-text">Make sure this is accurate to access the best rooms and improve recommendations.</span>
+													<select id="Timezone" name="Timezone" class="profile-input-name">
+															{% if user.timezone %}
+																<option value="" selected disabled>{{user.timezone}}</option>
+															{% else %}
+																<option value="" selected disabled>Select timezone</option>
+															{% endif %}
+																<option value="Cape Verde">Cape Verde Time</option>
+																<option value="UTC/GMT + 1">West Africa UTC/GMT + 1</option>
+																<option value="UTC/GMT + 2">Central Africa UTC/GMT + 2</option>
+																<option value="UTC/GMT + 3">East Africa UTC/GMT + 3</option>
+																<option value="UTC/GMT + 4">Seychelles UTC/GMT + 4</option>
+													</select>
+												</div>
+												<div id="studies-interests">
+													<h3>Studies & Interests</h3>
+													<h4>School Level</h4>
+													<span class="display-name-text">Choose the one that applies to you best.</span>
+													<select class="profile-input-name" name="schoolLevel">
+														{% if user.schoolLevel %}
+															<option value="" selected disabled>{{user.schoolLevel}}</option>
+														{% else %}
+															<option value="" selected disabled>Select shool level</option>
+														{% endif %}
+															<option value="professional">👨‍✈️ Professional </option>
+															<option value="Postgraduate">🧑🏻‍🎓 Postgraduate</option>
+															<option value="College">📕 College</option>
+															<option value="High School">📘 High School </option>
+															<option value="Middle School">📗 Middle School</option>
+													</select>
+													<h4>Area of Study/Work</h4>
+													<span class="display-name-text">Choose the one that applies to you best.</span>
+													<input class="profile-input-name" type="text"/>
+													<h4>Interests</h4>
+													<span class="display-name-text">Express yourself! You can add up to 8 interests.</span>
+													<div id="8-interext">
+														<div id="selected-interests">
+															{% if user.interests %}
+																{% for i in user.interests %}
+																<div>{{i}}</div>
+																{% endfor %}
+															{% endif %}
+														</div>
+															<select id="interest-for-user" name="interest">
+																<option value="" selected disabled>➕</option>
+																<option value="🎵 Rock">🎵 Rock</option>
+																<option value="🎵 Jazz">🎵 Jazz</option>
+																<option value="🎵 Lofi">🎵 Lofi</option>
+																<option value="🎵 Country">🎵 Country</option>
+																<option value="🎵 Classical">🎵 Classical</option>
+																<option value="🎵 Pop">🎵 Pop</option>
+																<option value="🎵 Piano">🎵 Piano</option>
+																<option value="🎵 Guitar">🎵 Guitar</option>
+																<option value="🎵 Taylor Swift">🎵 Taylor Swift</option>
+																<option value="🎵 Drake">🎵 Drake</option>
+																<option value="🎵 Billie Elish">🎵 Billie Elish</option>
+																<option value="🎵 Electronic">🎵 Electronic</option>
+																<option value="🎙️ Podcast">🎙️ Podcast</option>
+																<option value="👨‍🍳 Cooking">👨‍🍳 Cooking</option>
+																<option value="✍️ Drawing">✍️ Drawing</option>
+																<option value="🏎️ Cars">🏎️ Cars</option>
+																<option value="🍎 Health">🍎 Health</option>
+																<option value="📷 photography">📷 photography</option>
+															</select>
+													</div>
+												</div>
+												<div class="save-discard-cngs">
+													<p>Careful - you have some unsaved changes!</p>
+													<div id="sdc-reset">Reset</div>
+													<button id="sdc-save" type="submit">Save Changes</button>
+												</div>
+											</form>
+										</div>
+										<div id="user-profile-account-settings">
+											<h3>Account Settings</h3>
+											<div id="account-settings-main-container">
+												<span id="asmc-ue"><h4>Username</h4><h4>Edit</h4></span>
+												<input id="asmc-ue-input" placeholder="{{user.username}}" type="text" name=""/>
+												<h4>Phone Number</h4>
+												<span class="display-name-text">Add your phone number to recover your account if you get locked out.</span>
+												<button id="add-phone">Add Phone</button>
+												<h4>Account Deletion</h4>
+												<span class="display-name-text">Deleting your account cannot be undone.</span>
+												<button id="delete-account" onclick="delAccount()">Delete Account</button>
+
+												<div id="delete-account-window">
+													<div id="delete-account-window-header">
+														<h2>Delete Account?</h2>
+														<div class="ipnh-x1"><i class="fa-solid fa-x"></i></div>
+													</div>
+													<p id="dawcode">
+														Are you sure you wish to delete your account? This action <br>
+														&emsp;cannot be undone. You will still be able to create a new<br>
+														 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;account.
+													</p>
+													<div id="daw-btns">
+														<button>Nevermind</button>
+														<button>Delete Account</button>
+													</div>
+												</div>
+
+												<div id="input-phone-number">
+
+													<div id="input-phone-number-header">
+														<h2>Enter a Phone Number</h2>
+														<div class="ipnh-x"><i class="fa-solid fa-x"></i></div>
+													</div>
+													<p id="pnvcode">
+													  &emsp;We will send you a text with a verification code.<br>
+													  Please note, you can only use a phone number on<br>
+													  &emsp;&emsp;&emsp;&emsp;&emsp;one account at a time.
+													</p>
+													<div id="add-pn-container">
+														<input id="phone-number-ic"></input>
+													</div>
+													<button id="sendCode-btn">Send Code</button>
+
+												</div>
+											</div>
+										</div>
+							
+				</div>
+		</div>
+		<script type="text/javascript">
+
+        	function setProfile() {
+        		const element = document 
+                	.querySelector('#user-user-profile'); 
+            	element.classList.toggle('visible');
+        	}
+
+			$(document).ready(function () {
+
+			$("#home").css("border", "none");
+
+           $("#upo-posts").click(function () {
+
+            	$.get(`/echetra/r/u/{{user_id}}/posts`, function (data, status) {
+            		console.log(data)
+            		$("#up-posts").empty()
+            		$("#up-about").remove();
+
+            		data.forEach(function (p) {
+
+            				$("#up-posts").append(`
+            					<div class="min-post" id=${p.id}>
+							<div class="min-post-header">Posted in Community&emsp;.${p.created_at}</div>
+							<div class="min-post-text">
+								${p.text}<br>
+							</div>
+							<a style="font-size: 12px; cursor: pointer;">See more ...</a>
+							<div class="post-interaction">
+								<i class="fa-regular fa-message"></i>
+								<i class="fa-solid fa-retweet"></i>
+								<i class="fa-regular fa-heart"></i>
+							</div>
+						</div>
+            				`);
+            		});
+            	});
+            });
+
+
+           $("#upo-projects").click(function () {
+            	$("#up-about").remove();
+
+            	$.get(`/echetra/r/u/{{user.id}}/p`, function (data) {
+            		console.log(data)
+            		$("#up-posts").empty();
+
+            		data.forEach(function (d) {
+            			$("#up-posts").append(
+            				`
+            				<div id="up-projects">
+            					<div style="font-size: 17px;font-weight:bold;">${d.name}&emsp;.${d.created_at}</div>
+            					<i style="font-size: 12px;font-weight:bold;">type: ${d.category}</i>
+            				</div>
+            				`
+            			);
+            		});
+            	})
+
+            });
+
+
+	$("#upo-about").click(function () {
+
+            			$("#up-posts").empty();
+            			$("#up-about").remove();
+
+            			$("#up-posts").append(
+
+            				`<div id="up-about">
+						<h4>ABOUT ME</h4>
+						{% if user.description %}
+							<p>{{user.description}}</p>
+						{% else %}
+							<p>Uh oh, there's nothing here yet &#128517 <a href="#" class="clickhere">click here to fill it in</a></p>
+						{% endif %}
+						<h4>PROJECT STATS</h4>
+						<div class="up-about-ps">
+							<div id="upaps-level">
+								⭐ Level
+								{% if user.level %}
+									<span>{{user.level}}</span>
+								{% else %}
+									 <span>1</span>
+								{% endif %}
+							</div>
+							<div id="upaps-focus">
+								<img src="../../../static/images/clockp.png.png" width="25px" height="25px"></img>
+								Focus Appx
+								{% if user.focus %}
+								<span>{{user.focus}}</span>
+								{% else %}
+								<Span>0</Span>
+								{% endif %}
+							</div>
+							<div id="upaps-streak">
+								<img src="../../../static/images/fire.png" width="25px" height="25px"></img>
+								No projects
+								{% if user.projects %}
+									<span>{{user.projects.no}}</span>
+								{% else %}
+									<span>0</span>
+								{% endif %}
+							</div>
+						</div>
+						<h4>INTERESTS</h4>
+						{% if user.interests %}
+							<div id="selected-interests">
+							{% for i in user.interests %}
+							<p>{{i}}</p>
+							{% endfor %}
+							</div>
+						{% endif %}
+					</div>`
+				)
+            	});
+
+
+            $("#user-profile-theform").on("submit", function (event) {
+            	event.preventDefault();
+
+            	let fData = new FormData(this);
+            	fData.append('user_id', "{{user.id}}");
+            	fData.append('interests', interests);
+
+            	/*for (const  value of fData.values()) {
+    				console.log(value);
+				}*/
+
+				$("#sdc-save").click(function () {
+
+					$.ajax({
+						type: 'PUT',
+						url: `/Echetra/user/{{user.id}}`,
+						data: fData,
+						cache: false,
+						processData: false,
+						contentType: false,
+						success: function (data) {
+							console.log(data)
+						}
+					})            	
+            	});
+            });
+			});
+		</script>
+	</body>
+</html>

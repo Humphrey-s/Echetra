@@ -1,34 +1,94 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="../static/styles/header.css"/>
+		<link rel="stylesheet" href="../static/styles/profile.css"/>
 		<link rel="stylesheet" href="../static/styles/body.css"/>
-		<link rel="stylesheet" href="../static/styles/hack.css"/>
-		<link rel="stylesheet" href="../static/styles/div.css"/>
-		<link rel="stylesheet" href="../static/styles/d_side.css"/>
 		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
 		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
 		<script src="../static/scripts/s-login.js"></script>
 		<script src="../static/scripts/projects.js"></script>
 	</head>
 	<body>
-		<header class="top">
-			<div class="title">
-				<p style="color: white;">Echetra for Engineers</p>
-			</div>
-			<div class="login">
-			</div>
-			<div class="signUp">
-			</div>
-		</header>
-		<section>
-			<div id="projects">
-				<h4>dashboard</h4>
-			</div>
-		</section>
-		<section class="side_menu">
+		<div class="wrapper">
+			<div class="user-profile-form">
+					
+					<div id="user-profile-side-menu">
+						<span id="settings-title"><i class="fa-solid fa-chevron-left"></i>Settings</span>
+						<span id="settings-profile">Profile</span>
+						<span id="settings-account">Account settings</span>
+					</div>
+					<div id="user-profile-main-form">
+							<h2>Edit Profile</h2>
+							<div id="user-profile-appearence">
+								<h3>Profile Appearence</h3>
+								<h5>Avatar</h5>
+								{% if user.avatar_img %}
+									<div id="user-form-profile-avater">
+										<img src="../../../static/images/{{user.avatar_img}}?{{cache_id}}"></img>
+									</div>
+								{% else %}
+									<div id="user-form-profile-avater" style="background-color: {{user.avatar_color}};">
+										{{user.username[0:2].upper()}}
+									</div>
+								{% endif %}
+								<h4>Profile Banner</h4>
+								<div class="profile-banner" style="background-color: {{user.avatar_color}}">
+									<div id="profile-banner-img"><i class="fa-regular fa-image"></i>change</div>
+								</div>
+								<h4>Display Name</h4>
+								<span class="display-name-text">Choose wisely. This is the name people will know you by on Echetra</span>
+								<input class="profile-input-name" type="text"></input>
+								<h4>About Me</h4>
+								<span class="display-name-text">Tell your story. This is where you can introduce yourself to the Echetra community</span>
+								<textarea class="profile-banner" style="margin-bottom: 40px"></textarea>
+								<input type="file" id="profile-img-input" style="display: none;"></input>
+							</div>
+							<div id="user-profile-basicinfo">
+								<h3>Basic Info</h3>
+								<h4>Age</h4>
+								<span class="display-name-text">Make sure this is accurate to access the best rooms and improve recommendations.</span>
+								<input class="profile-input-name" type="text" style="margin-top: 5px;"></input>
+								<h4>Gender</h4>
+								<span class="display-name-text">These appear on your profile so others know how to refer to you.</span>
+								<input class="profile-input-name"></input>
+								<h4>Country</h4>
+								<span class="display-name-text">Make sure this is accurate to access the best rooms and improve recommendations.</span>
+								<input class="profile-input-name"></input>
+								<h4>Timezone</h4>
+								<span class="display-name-text">Make sure this is accurate to access the best rooms and improve recommendations.</span>
+								<input class="profile-input-name"></input>
+							</div>
+							<div id="studies-interests">
+								<h3>Studies & Interests</h3>
+								<h4>School Level</h4>
+								<span class="display-name-text">Choose the one that applies to you best.</span>
+								<input class="profile-input-name" type="text" name=""/>
+								<h4>Area of Study/Work</h4>
+								<span class="display-name-text">Choose the one that applies to you best.</span>
+								<input class="profile-input-name" type="text"/>
+								<h4>Interests</h4>
+								<span class="display-name-text">Express yourself! You can add up to 8 interests.</span>
+								<input class="profile-input-name" type="text"/>
 
-		</section>
-
+							</div>
+					</div>
+					<div id="user-profile-account-settings">
+						<h3>Account Settings</h3>
+						<div id="account-settings-main-container">
+							<span id="asmc-ue"><h4>Username</h4><h4>Edit</h4></span>
+							<input id="asmc-ue-input" placeholder="{{user.username}}" type="text" name=""/>
+							<h4>Phone Number</h4>
+							<span class="display-name-text">Add your phone number to recover your account if you get locked out.</span>
+							<button id="add-phone">Add Phone</button>
+							<h4>Account Deletion</h4>
+							<span class="display-name-text">Deleting your account cannot be undone.</span>
+							<button id="delete-account">Delete Account</button>
+							<div id="input-phone-number">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
 	</body>
 </html>

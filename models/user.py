@@ -8,6 +8,7 @@ class User(BaseModel):
     first_name = ""
     last_name = ""
     university = ""
+    interests = []
     email = ""
     field = ""
     mobile_number = ""
@@ -48,4 +49,14 @@ class User(BaseModel):
                     self.password = hashed.decode("utf-8")
             else:
                 for key, value in kwargs.items():
+                    if key == "interests":
+                        lst = self.interests
+                        if isinstance(value, list):
+                            for i in value:
+                                if i not in lst:
+                                    lst.append(i)
+                        else:
+                            lst.append(value)
+                        value = lst
+                        
                     setattr(self, key, value)

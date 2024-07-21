@@ -30,17 +30,17 @@ def get_project(p_id=None):
 
     return {"error": "not found"}
 
-@app_pages.route("/projects/tasks/<p_id>", methods=["GET"], strict_slashes=False)
-def get_ptasks(p_id=None):
+@app_pages.route("/projects/tasks/<pid>", methods=["GET"], strict_slashes=False)
+def get_ptasks(pid=None):
     """get tasks for a given project"""
-    obj = storage.get(p_id)
+    obj = storage.get2(Project, pid)
 
     if obj is None:
-        abort(404, "{error: project not found}")
+        abort(400, "{error: project not found}")
 
     all_tasks = storage.all(Task).values()
 
-    lst = [task.to_dict() for task in all_tasks if task.project_id == p_id]
+    lst = [task.to_dict() for task in all_tasks if task.project_id == pid]
 
     return jsonify(lst)
 
@@ -55,6 +55,8 @@ def add_project():
 
     instance = Project(**data)
     instance.save()
+    storage.save()
+    storage.reload()
 
     return jsonify(instance.to_dict())
 
@@ -76,6 +78,7 @@ def update_project(p_id=None):
             if array[0] == "task":
                 obj.tasks.append(array[1])
                 obj.save()
+                storage.reload()
                 return obj.to_dict()
 
     return "{}"

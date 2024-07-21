@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
 	$(".login").click(function () {
-		window.location = "/login"
+		window.location = "/echetra/login"
 		alert("h")
 	});
 
 	$(".signUp").click(function () {
-                window.location = "/signUp"
+                window.location = "/echetra/signUp"
 	});
 });

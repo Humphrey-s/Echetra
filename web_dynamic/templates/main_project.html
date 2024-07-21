@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Echetra</title>
+
+		<link rel="stylesheet" href="../../../static/styles/layout.css"/>
+		<link rel="stylesheet" href="../../../static/styles/wrapper3.css"/>
+		<link rel="stylesheet" href="../../../static/styles/project_cards.css">
+		<link rel="stylesheet" href="../../../static/styles/projects.css">
+
+		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
+		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
+
+		<script src="../../../static/scripts/home.js"></script>
+	</head>
+	<body>
+		<div class="wrapper">
+
+			<div id="title">
+				<p style="color: white;">Echetra for Engineers</p> 
+			</div>
+			<div class="main wrapper2">
+				<div class="aside">
+					<a><div class="elogo-wrapper"><img class="elogo-wrapper" src="/static/images/elogo.png"></img></div></a>
+					<hr class="hlil-line">
+					<a href="/echetra/home?{{cache_id}}" id="home-link"><div class="bar home">
+						<i class="fa-solid fa-house fa-xl" ></i>
+					</div></a>
+					<a href="/echetra/projects?{{cache_id}}" id="project-link"><div class="bar project">
+						<i class="fa-solid fa-bars-progress fa-xl"></i>
+					</div></a>
+					<!--div class="bar study">
+						<i class="fa-solid fa-globe fa-xl"></i>
+					</div-->
+					<a href="/echetra/community?{{cache_id}}"><div class="bar community">
+						<i class="fa-solid fa-people-arrows fa-xl"></i>  
+					</div></a>
+					<div class="bar chess">
+						<i class="fa-solid fa-chess fa-xl"></i>
+					</div>
+					<hr class="hlil-line">
+					<div class="bar profile">
+						<i class="fa-solid fa-user fa-xl"></i>
+					</div>
+				</div>
+				<div class="main wrapper3">
+					<div id="projects">
+						<div class="projects-stats">
+						</div>
+						<div class="projects-current">
+							<h3>My Projects</h3>
+							{% if projects is none or projects == [] %}
+							<div class="Np-available">⚠️ No project Available</div>
+							{% else %}
+								{% for p in projects %}
+								{% endfor %}
+							{% endif %}
+						</div>
+						<div class="projects-all">
+							<h3>All Projects</h3>
+
+							<button><a id="category_web">Web Development</a></button>
+								<div class=dropdown-menu-container id="web-links-container">
+									<div id="weblinks">
+									</div>
+								</div>
+							<button><a id="category_engineering">Engineering</a></button>
+								<div class= dropdown-menu-container id="Engineering-links-container">
+									<div id="englinks">
+									</div>								
+								</div>
+							<button><a id="category_art">Art</a></button>
+								<div class="dropdown-menu-container" id="Art-links-container">
+									<div id="artlinks">
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+			<script>
+				$(document).ready( function () {
+
+					$(document).ready(function () {
+					const userId = "{{ user_id }}";
+					const username = "{{ username }}"
+
+					$("#project-link").click(function () {
+						location.reload();
+					});
+
+					$.get(`http://localhost:5001/users/projects/${userId}`, function (data, status) {
+
+						$.each(data, function (i, obj) {
+
+							let url = `/Echetra/${username}/${obj.name}`
+							if (!obj.endDate) {
+								let pid = obj.id
+								pid = pid.substring(0, 3);
+								$(".projects-current").append(
+								`	<div class="project-current-divs">
+										<div class="project-current-div1">
+											<span class="project-pid">${pid}</span>
+											<a href="${url}"><span class="project-div-name">${obj.name}</span></a>
+											<span class="project-current-div-done">done</span>
+										</div>
+
+									</div>`);
+							}
+						});
+
+
+						$.each(data, function (i, obj) {
+
+							let pid2 = obj.id;
+							pid2 = pid2.substring(0, 3);
+							
+							let container = "";
+
+							if (obj.category === "webDevelopment") {
+								container = "#weblinks";
+							}
+							if (obj.category === "Engineering") {
+								container = "#englinks"
+							}
+							if (obj.category === "art") {
+								container = "#artlinks"
+							}
+
+
+							$(`${container}`).append(
+								`
+								<div class="container-link">
+									<span class="project-pid">${pid2}</span>
+								 	<a href="/Echetra/${username}/${obj.name}">${obj.name}</a>
+								</div>
+								`)
+						});
+					});
+
+					
+			function slidepCategory () {
+				const webBtn = document.getElementById('category_web');
+				const webContainer = document.getElementById('web-links-container');
+				const webLinks = document.getElementById('weblinks');
+
+					webBtn.addEventListener('click', () => {
+						const linksHeight = webLinks.getBoundingClientRect().height;
+						const containerHeight = webContainer.getBoundingClientRect().height;
+
+						containerHeight === 0
+							? webContainer.style.height = `${linksHeight}px`
+							: webContainer.style.height = 0;
+					});
+
+
+				const engBtn = document.getElementById('category_engineering');
+				const engContainer = document.getElementById('Engineering-links-container');
+				const engLinks = document.getElementById('englinks');
+
+					engBtn.addEventListener('click', () => {
+						const linksHeight = engLinks.getBoundingClientRect().height;
+						const containerHeight = engContainer.getBoundingClientRect().height;
+
+						containerHeight === 0
+							? engContainer.style.height = `${linksHeight}px`
+							: engContainer.style.height = 0;
+					});
+
+				const artBtn = document.getElementById('category_art');
+				const artContainer = document.getElementById('Art-links-container');
+				const artLinks = document.getElementById('artlinks');
+
+					artBtn.addEventListener('click', () => {
+						const linksHeight = artLinks.getBoundingClientRect().height;
+						const containerHeight = artContainer.getBoundingClientRect().height;
+
+						containerHeight === 0
+							? artContainer.style.height = `${linksHeight}px`
+							: artContainer.style.height = 0;
+
+
+					});
+				}
+
+			slidepCategory();
+
+				});
+				})
+			</script>
+		</body>
+</html>

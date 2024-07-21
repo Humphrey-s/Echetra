@@ -1,0 +1,61 @@
+@import "sidebar.css";
+@import "wrapper3.css"
+html {
+	overflow: hidden;
+}
+body {
+	margin: auto;
+	overflow: hidden;
+	width: 1200px;
+	min-width: 100%;
+	height: 100%;
+	min-height: 100%;
+	background-color: RGB(19, 31, 82);
+}
+
+
+.wrapper {
+	width: 100%;
+	height: 100vh;
+	min-height: 100%;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+#title {
+	background-color: ;
+	padding-left: 450px;
+
+	line-height: 5px;
+	width: 100%;
+	height: 30px;
+	color: white;
+	background-color: RGB(19, 31, 82);
+	border-radius: 0px 0px 9px 9px;
+}
+
+.main.wrapper2 {
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+	min-height: 90%;
+	border: none;
+}
+
+.aside {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 6%;
+}
+
+.main.wrapper3 {
+	background-color: #000039;
+	width: 94%;
+	height: 100%;
+	border: none;
+}

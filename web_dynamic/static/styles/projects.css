@@ -1,0 +1,196 @@
+
+#projects {
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	display: flex;
+}
+
+.projects-stats {
+	box-sizing: border-box;
+	width: 100%;
+	height: 50px;
+	/*border: 1px solid grey;*/
+}
+
+.Np-available {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	gap: 10px;
+	color: black;
+	width: 150px;
+	font-size: 13px;
+	padding-left: 5px;
+	height: 20px;
+	border: 1px solid grey;
+	border-radius: 5px;
+	background-color: #c4c3d0;
+}
+
+.projects-current {
+	display flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding-left: 30px;
+	padding-right: 30px;
+	width: 100%;
+	min-height: 50px;
+	height: auto;
+
+	color: white;
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+.projects-current h3 {
+	font-weight: 100;
+	color: white;
+	font-family: sans-serif;
+}
+
+.projects-all {
+	display flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding-left: 30px;
+	padding-right: 30px;
+	width: 100%;
+	min-height: 100px;
+	height: auto;
+}
+
+.projects-all h3 {
+	font-weight: 100;
+	color: white;
+	font-family: sans-serif;
+}
+
+.project-current-divs {
+	display: flex;
+	box-sizing: border-box;
+	padding-left: 6px;
+	flex-direction: column;
+	margin-bottom: 10px;
+	border-radius: 5px;
+	width: 100%;
+	height: 50px;
+	border: 1px solid grey;
+}
+
+.project-current-div1 {
+	display: flex;
+	flex-direction: row;
+	padding-top: 5px;
+	width: 100%;
+	height: 40%;
+	border: 1px solid grey;
+}
+
+.project-pid {
+	padding: 2px;
+	margin-right: 5px;
+	font-size: 11px;
+	margin-bottom: 5px;
+	width: auto;
+	height: auto;
+	border-radius: 404px;
+	border: 1px solid grey;
+}
+
+a {
+	text-decoration: None;
+}
+
+.project-current-div-done {
+	justify-self: flex-end;
+	font-size: 16px;
+	box-sizing: border-box;
+	text-align: right;
+	line-height: 17px;
+	padding-right: 8px;
+	margin-left: auto;
+	margin-right: 10px;
+	width: 70px;
+	height: 20px;
+	border-radius: 5px;
+	border: 1px solid grey;
+}
+
+/*drop down menu: All projects*/
+.projects-all button {
+	width: 100%;
+	height: 30px;
+	text-align: left;
+	border: 1px solid grey;
+	outline: None;
+	border-radius: 2px 2px 2px 2px;
+	padding-left: 14px;
+}
+
+.projects-all button a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.dropdown-menu-container {
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	width: 100%;
+	margin-right: 7px;
+	height: 0;
+	overflow: hidden;
+	border-left: 1px solid grey;
+	border-right: 1px solid grey;
+	transition: all 0.3s ease;
+}
+
+#weblinks {
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	width: 100%;
+	/*border: 1px solid grey;*/	
+}
+
+#artlinks {
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	width: 99.9%;
+	/*border-bottom: 1px solid grey;*/
+}
+
+#englinks {
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	width: 100%;
+	/*border: 1px solid grey;*/
+}
+
+.container-link {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	margin-right: 1px;
+	padding-left: 10px;
+	line-height: 30px;
+	height: 30px;
+	border-bottom: 1px solid grey;
+}
+
+.container-link span {
+	height: auto;
+	box-sizing: border-box;
+	width: auto;
+	font-size: 11px;
+	line-height: 10px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	padding: 2px;
+	border-radius: 6px 0px 0px 5px;
+}

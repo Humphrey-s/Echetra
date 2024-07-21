@@ -15,15 +15,12 @@ class Task(BaseModel):
     def __init__(self, *args, **kwargs):
         """initialization"""
         if kwargs is not None:
-            super().__init__(*args, **kwargs)
-
-            if "name" in kwargs.keys():
-                self.name = kwargs["name"]
-            if "project_id" in kwargs.keys():
-                self.project_id = kwargs["project_id"]
-            if "startDate" in kwargs.keys():
-                self.startDate = kwargs["startDate"]
-            if "endDate" in kwargs.keys():
-                self.endDate = kwargs["endDate"]
-            if "completed" in kwargs.keys():
-                self.completed = kwargs["completed"]
+            if "id" in kwargs.keys():
+                for key, value in kwargs.items():
+                    setattr(self, key, value)
+            else:
+                super().__init__(self, *args, **kwargs)
+                for key, value in kwargs.items():
+                    setattr(self, key, value)
+        else:
+            super().__init__(self, *args, **kwargs)

@@ -1,14 +1,38 @@
-.project, .home {
-	font-family: Sans-serif;
-	position: relative;
-	height: 100%;
-	width: 100%;
+.project, .home {font-family: Sans-serif;position: relative;height: 100%;width: 100%;}
+.home h1 {font: Sans-serif;position: relative;left: 20px;top: 0px;color: #f0f8ff;}
+.mainhome {position: relative;top: 20px;width: 100%;height: auto;min-height: 100%;display: flex;background-color: #253529;
+flex-shrink: 0;gap: 20px;border: None;flex-wrap: wrap;}
+#cp {display: flex;flex-direction: column;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 400px;height: 300px;margin: 20px;box-shadow: 0px 1px 5px 0px #0C210E;border: None;border-radius: 10px;}
+#cp:hover {border: 5px solid #d0ff14;cursor: pointer;filter: brightness(0.77);}
+#cpwrap {text-align: center;align-self: end;box-sizing: border-box;position: relative;border: None;height: 100px;width: 100%;/*background-color:#385C46*/;background-color:#385C46;border-radius: 0px 0px 8px 8px;}
+#bolt1 {position: absolute;left: 100px;top: 9px;}
+#bolt2 {position: absolute;left: 230px;top: 9px;}
+.objname {position: absolute;top: 7px;left: 140px;color: #f0fff0;font-family: Bookman, URW Bookman L, serif;}
+#objType {position: absolute;left: 15px;top: 45px; width: 100px;line-height:30px; background-color: #353839;color: #f0fff0;height: 30px;border-radius: 15px;}
+#objDone {position: absolute;left:125px;top: 45px;width: 100px;line-height:30px;background-color: #353839;color: #f0fff0;height: 30px; border-radius: 15px;}
+#objDue {position: absolute;left:245px;top: 45px;width: 120px;line-height:30px;background-color: #353839;color: #f0fff0;height: 30px;border-radius: 15px;}
+.fa-solid.fa-guitar {position: absolute; left: 10px;top: 6px;}
+#objDone img {float: left;margin-left: 12px;margin-top: 4px;}
+#objDue img { float: left;margin-left: 12px;margin-top: 4px;}
+#cpimg {box-sizing: border-box;align-self: start;width: 100%;display: flex;
+justify-content: center;align-items: center;overflow: hidden;border-radius: 5px 5px 0px 0px;
+height: 200px;border: None;}
+#cpimg img {flex-shrink: 0;min-width: 100%;min-height: 100%;}
+.home {min-height: 100%;height: auto;}
+
+#AllIncomplete {
+	text-align: center;
+	line-height: 50px;
+	margin-left: 20px;
+	margin-top: 50px;
+	width: 300px;
+	background-color:#0D4566;
+	color: white;
+	height: 100px;
+	border: 1px solid grey;
 }
 
-.home h1 {
-	font: Sans-serif;
-	position: relative;
-	left: 20px;
-	top: 0px;
-	color: #f0f8ff;
+.elogo-wrapper {
+	width: 30px;
+	height: 30px;
 }

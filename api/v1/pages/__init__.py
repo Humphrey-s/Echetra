@@ -8,3 +8,4 @@ app_pages = Blueprint('app_pages', __name__, url_prefix="/")
 from api.v1.pages.hackathons import *
 from api.v1.pages.project import *
 from api.v1.pages.task import *
+from api.v1.pages.user import *

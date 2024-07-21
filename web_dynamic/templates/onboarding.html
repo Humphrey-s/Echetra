@@ -1,0 +1,31 @@
+<html !DOCTYPE>
+	<head>
+		<script src="https://kit.fontawesome.com/52efd0bc50.js" crossorigin="anonymous"></script>
+		<script src=https://code.jquery.com/jquery-3.2.1.min.js></script>
+		<link rel="stylesheet" href="../../static/styles/login.css?{{cache_id}}"></link>		
+	</head>
+	<body>
+		<div id="lil-wrapper">
+			<div id="lil-logo">
+				</div>
+			<span style="font-size: 26px;font-family: sans-serif;color: white; margin-top: 10px;">
+			How shall we call you?
+			</span>
+			<form id="namesign-f" method="POST" action="/echetra/signup/onboarding-step2?{{cache_id}}">
+					<input id="lil-name" type="text" placeholder="Full Name" name="name"></input>
+					<div id="lil-con-google2">Next</div>
+					<input id="lil-submit" style="display: none;" type="submit"></input>
+			</form>
+
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function () {
+
+					$("#lil-con-google2").click(function () {
+						$("#lil-submit").click()
+					});
+				});
+		</script>
+
+	</body>
+</html>

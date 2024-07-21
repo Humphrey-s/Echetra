@@ -1,0 +1,125 @@
+.home_content {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 25px;
+	box-sizing: border-box;
+	padding-left: 30px;
+	padding-top: 20px;
+}
+
+.project-card {
+	width: 400px;
+	height: 300px;
+	margin: 5px;
+	border: 1px solid grey;
+	border-radius: 10px;
+}
+
+.project-card {
+	display: flex;
+	flex-direction: column;
+}
+
+.project-image-container {
+	width: 100%;
+	height: 65%;
+	border-bottom: 1px solid grey;
+}
+
+.project-detantels {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 100%;
+	height: 35%;
+	border: 1px solid grey;
+	border-radius: 0px 0px 10px 10px;
+}
+.project-detantels-name {
+	display: flex;
+	flex-direction: row;
+	line-height: 10px;
+	width: 100%;
+	height: 40%;
+	border: 1px solid grey;
+	box-sizing: border-box;
+	padding-left: 20px;
+}
+.project-detantels-main {
+	position: relative;
+	box-sizing: border-box;
+	line-height: 20px;
+	width: 100%;
+	height: 60%;
+	padding-left: 10px;
+	border: 1px solid grey;
+	border-radius: 0px 0px 10px 10px;
+}
+.project-category {
+	position: absolute;
+	top: 17px;
+	box-sizing: border-box;
+	padding-left: 4px;
+	left: 20px;
+	line-height: 27px;
+	width: 100px;
+	height: 30px;
+	border:1px solid grey;
+	border-radius: 20px;
+} 
+.project-completed {
+	position: absolute;
+	box-sizing: border-box;
+	padding-left: 4px;
+	top: 17px;
+	left: 150px;
+	line-height: 30px;
+	width: 100px;
+	height: 30px;
+	border: 1px solid grey;
+	border-radius: 20px;
+}
+.project-endDate {
+	position: absolute;
+	box-sizing: border-box;
+	padding-left: 4px;
+	top: 17px;
+	left: 270px;
+	line-height: 30px;
+	width: 110px;
+	height: 30px;
+	border: 1px solid grey;	
+	border-radius: 20px;
+}
+
+
+.project-category img {
+	position: absolute;
+	left: 15px;
+	top: 4px;
+}
+.project-category i {
+	margin-left: 15px;
+	font-size: 18px;
+}
+
+.project-completed img {
+	position: absolute;
+	left: 15px;
+	top: 4px;
+}
+.project-completed i {
+	font-size: 17px;
+	margin-left: 18px;
+}
+
+.project-endDate img {
+	position: absolute;
+	left: 15px;
+	top: 4px;
+}
+.project-endDate i {
+	margin-left: 35px;
+	font-size: 17px;
+}

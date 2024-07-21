@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {% block content %}
+<script src="../static/scripts/home_3.js?{{cache_id}}"></script>
+
+<div id="home">
+
+	<div class="home_main">
+		<div class="home_header">
+			<h1>Home</h1><br>
+			<a><div id="Hheader-current">
+			<h2>Current Projects</h2>
+			</div></a>
+			<div id="Hheader-Finished">
+				<h2>Finished</h2>
+			</div>
+			<div id="Hheader-study">
+				<h2>Study Rooms</h2>
+			</div>
+		</div>
+		<div class="home_content">
+			
+		</div>
+	</div>
+	<div class="home_timeline">
+		<div class="home-timeline-btn">
+			<button class="createbtn">
+				<i class="fa-solid fa-plus fa-xl"></i>
+				<h2>Create Project</h2>
+			</button>
+		</div>
+		<div class="home-timeline-detantes">
+				<div class="timeline-stats">
+					<div class="stats-left-column">
+						<span class="stats-title">
+							<h3>STATISTICS</h3>
+						</span>
+						<div class="stats-months">
+						</div>
+						<div class="stats-projects">
+						</div>
+					</div>
+				<div class="stats-right-column">
+						<div class="stats-collaboration">
+						</div>
+						<div class="stats-grading">
+						</div>
+				</div>
+		</div>
+		<div class="timeline-suggestions">
+				<div id="timeline-suggested-friends">
+						<span><h3>SUGGESTED FRIENDS</h3></span>
+						</div>
+						<div id="timeline-notifications">
+								<span><h3>NOTIFICATIONS</h3></span>
+						</div>
+				</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

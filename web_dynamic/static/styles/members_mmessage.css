@@ -1,0 +1,336 @@
+.community-main-container {
+	display: flex;
+	flex-direction: row;
+	border: None;
+}
+
+.message-main {
+	display: flex;
+	flex-direction: column-reverse;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	justify-content: space-between;
+	width: 60%;
+	border-right: 1px solid grey;
+}
+
+.recipient-profile {
+	display: flex;
+	flex-direction: column;
+	flex: 0 1 auto;
+	box-sizing: border-box;
+	padding-top: 20px;
+	padding-left: 23px;
+	padding-right: 10px;
+	font-family: sans-serif;
+	width: 40%;
+	height: 100%;
+}
+
+.message-main {
+	padding: 10px;
+}
+
+.message-main-detante {
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	flex: 0 1 auto;
+	width: 100%;
+	height: 40%;
+}
+
+.message-main-detante-upper {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 80%;
+	box-sizing: border-box;
+	padding-top: 115px;
+}
+
+.message-main-detante-lower {
+	width: 100%;
+	height: 20%;
+	box-sizing: border-box;
+}
+
+.message-recipient {
+	width: 80px;
+	height: 65px;
+	margin-right: 20px;
+	border-radius: 15px;
+	border: 1px solid grey;
+
+	text-align: center;
+	line-height: 70px;
+	font-weight: bold;
+	font-family: sans-serif;
+	font-size: 20px;
+}
+.message-sender {
+	width: 80px;
+	height: 65px;
+	border-radius: 15px;
+	border: 1px solid grey;
+
+	text-align: center;
+	line-height: 70px;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.message-main-detante-lower h3 {
+	margin: 0px;
+	margin-bottom: 3px;
+	font-family: sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.message-main-detante-lower span {
+	font-family: sans-serif;
+	font-size: 16px;
+	width: auto;
+	height: auto;
+}
+
+.message-main-message {
+	width: 100%;
+	flex: 0 1 auto;
+	flex-flow: column wrap;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 40%;
+}
+
+.message-main-input {
+	display: flex;
+	flex-direction: column-reverse;
+	width: 100%;
+	height: 16%;
+	min-height: 0px;
+	box-sizing: border-box;
+	margin-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+	border: 1px solid grey;
+}
+
+#message-main-media {
+	width: 100%;
+	height: 40px;
+	box-sizing: border-box;
+	padding-top: 0px;
+	padding-left: 13px;
+}
+
+.message-main-input textarea {
+	font-size: 16px;
+	width: 96%;
+	min-height: 52px;
+	height: auto;
+	margin-left: 12px;
+	padding-top: 5px;
+	outline: None;
+	resize: None;
+	overflow: hidden;
+	white-space: initial;
+}
+
+#message-main-media {
+	display: flex;
+	flex-direction: row;
+	margin-top: 4px;
+	gap: 5px;
+}
+
+#message-main-media  span {
+	cursor: pointer;
+	box-sizing: border-box;
+	margin: 0px;
+	padding-top: 4px;
+	text-align: center;
+	color: grey;
+	width: 28px;
+	height: 25px;
+	border-radius: 4px;
+}
+
+#message-main-media .paper-plane {
+	margin-left: 280px;
+	padding-top: 3px;
+	width: 30px;
+}
+
+#message-main-media  span:hover {
+	background-color: lightgrey;
+}
+
+#card-form h3 {
+	margin: 0px;
+}
+
+#card-form-detante {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	width: 100%;
+	height: 180px;
+	border-bottom: 1px solid grey;
+}
+
+#card-form-detante-upper {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 66%;
+}
+#card-form-detante-lower {
+	display: flex;
+	box-sizing: border-box;
+	padding-top: 27px;
+	font-size: 12px;
+	flex-direction: row;
+	position: relative;
+	width: 100%;
+	height: 34%;
+	gap: 20px;
+	font-family: sans-serif;
+	border-bottom: 0.5px solid grey;
+}
+
+
+#card-form-detante-profile {
+	margin-right: 13px;
+	width: 100px;
+	height: 113px;
+	border-radius: 15px;
+	border: 1px solid grey;
+}
+#card-user-main {
+	display: flex;
+	flex-direction: column;
+	margin-top: 6px;
+	font-weight: 100;
+	font-size: 18px;
+}
+.card-user-contact {
+	display: flex;
+	margin-top: 10px;
+	flex-direction: row;
+	width: 100%;
+	height: auto;
+}
+
+.card-user-contact button {
+	display: flex;
+	flex-direction: row;
+	cursor: pointer;
+	box-sizing: border-box;
+	padding-top: 0px;
+	padding-left: 20px;
+	width: 130px;
+	height: 35px;
+	border-radius: 10px;
+	outline: none;
+	background-color: transparent;
+	border: 1px solid grey;
+}
+
+#card-user-Name i {
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+#card-user-Name span {
+	font-weight: bold;
+	font-size: 15px;
+	margin-top: 7px;
+}
+
+#card-user-link-copy {
+	font-size: 15px;
+	margin-left: 20px;
+	width: 50px;
+	height: 35px;
+	border: 1px solid grey;
+	border-radius: 6px;
+	padding-top: 9px;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+#card-form-detante-lower span {
+	text-align: center;
+	cursor: pointer;
+	color: grey;
+	width: auto;
+	height: auto;
+}
+
+.span-tapped {
+	margin-top: 16px;
+	width: 100%;
+	height: 4px;
+	border-radius: 10px;
+	background-color: None;
+}
+
+#card-form-detante-lower span:hover > div {
+	background-color: grey;
+}
+
+.just-message {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 20px;
+	gap: 10px;
+	width: 100%;
+	min-height: 45px;
+	height: auto;
+}
+
+.just-message-profile {
+	box-sizing: border-box;
+	padding-top: 2px;
+	width: 12%;
+	height: 100%;
+}
+
+.just-message-detante {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding-top: 0px;
+	width: 88%;
+	min-height: 100%;
+	height: auto;
+}
+
+.just-message-profile-id {
+	width: 50px;
+	height: 40px;
+	border: 1px solid grey;
+	border-radius: 10px;
+}
+
+.just-message-username {
+	font-weight: bold;
+	font-family: sans-serif;
+	font-size: 16px;
+	margin-bottom: 3px;
+}
+.just-message-message {
+	font-size: 14px;
+	font-weight: 100;
+	font-family: sans-serif;
+}
+.just-message-username i {
+	font-weight: initial;
+	font-size: 10px;
+	margin-left: 4px;
+}

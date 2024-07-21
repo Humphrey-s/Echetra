@@ -1,0 +1,161 @@
+{% extends 'base_community2.html' %} {% block content %}
+<link rel="stylesheet" href="../../../static/styles/members_mmessage.css"/>
+<div class="message-main">
+		<div class="message-main-input">
+			<div id="message-main-media">
+				<span><i class="fa-regular fa-image fa-lg"></i></span>
+				<span><i class="fa-regular fa-face-smile-wink fa-lg"></i></span>
+				<span><i class="fa-solid fa-paperclip fa-lg"></i></span>
+				<span><i class="fa-solid fa-at fa-lg"></i></span>
+				<span><i class="fa-solid fa-microphone fa-lg"></i></span>
+				<span class="paper-plane"><i class="fa-regular fa-paper-plane fa-lg"></i></span>
+			</div>
+			<form id="form-message" method="POST">
+				<textarea oninput="adjustWidth(this)" name="text"></textarea>
+				<input id="txta-btn" type="submit" style="display: none;"></input>
+				<input id="reset" style="display: none; "type="reset" value="Reset"></input>
+			</form>
+		</div>
+		<div class="message-main-message">
+			{% if messages %}
+				{% for m in messages %}
+					<div class="just-message">
+						<div class="just-message-profile">
+							<div class="just-message-profile-id"></div>
+						</div>
+						<div class="just-message-detante">
+							<span class="just-message-username">{{user.username}}<i>{{m.created_at}}</i></span>
+							<span class="just-message-message">{{m.message}}</span>
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>	
+		<div class="message-main-detante">
+			<div class="message-main-detante-upper">
+				<div class="message-recipient">{{user.username[0:2].upper()}}</div>
+				<div class="message-sender">{{recipient.username[0:2].upper()}}</div>
+			</div>
+			<div class="message-main-detante-lower">
+				<h3>Start Conversation</h3>
+				<span>This is the very beginning of your direct message history with {{recipient.username}}</span>
+			</div>
+		</div>
+
+</div>
+
+<div class="recipient-profile">
+	<h3>Profile</h3>
+	<div id="card-form-detante">
+		<div id="card-form-detante-upper">
+			<div id="card-form-detante-profile">
+			</div>
+			<div id="card-user-main">
+				<span class="card-user-Name"></span>
+				<div class="card-user-contact">
+					<div id="card-user-link-copy">
+						<i class="fa-solid fa-link"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="card-form-detante-lower">
+			<span style="color: black;">About<div class="span-tapped" id="tapped-about" style="background-color: black;"></div></span>
+			<span>Posts<div class="span-tapped" id="tapped-post"></div></span>
+			<span>Projects<div class="span-tapped" id="tapped-project"></div></span>
+			<span>Comments<div class="span-tapped" id="tapped-comment"></div></span>
+			<span>Community<div class="span-tapped" id="tapped-community"></div></span>
+		</div>
+</div>
+<script type="text/javascript">
+
+	var socketio = io();
+	var recipient_id = '{{recipient.id}}';
+	var sender_id = '{{user.id}}'
+
+	function adjustWidth (input) {
+					const maxLength = 100;
+
+					if (input.value.length == 0) {
+						input.style.height = '0px'
+					}
+					else if (input.value.length > maxLength){
+						input.style.height = (5*2 + "px");
+					}
+	}
+	$(document).ready(function () {
+
+
+		const getRandomColor = () => {
+  				const h = Math.floor(Math.random() * 360);
+  				return `hsl(${h}deg, 90%, 85%)`;
+			};
+
+		$(".message-recipient").css('background-color', getRandomColor());
+		$(".message-sender").css('background-color', getRandomColor());
+		$("#card-form-detante-lower").on('click', 'span', function (event) {
+			$('#card-form-detante-lower').find('*').css('color', 'grey');
+			$('#card-form-detante-lower').children().children().css('background-color', 'transparent');
+
+			$(this).css("color", 'black');
+			$(this).children('div').css('background-color', 'black');
+
+		});
+
+		$(".paper-plane").on('click', function (event) {
+			$("#txta-btn").click()
+		});
+
+		$("#form-message").on('submit', function (event) {
+			event.preventDefault();
+			var form_data = new FormData(this);
+			form_data.append("recipient_id", recipient_id);
+			form_data.append('sender_id', sender_id);
+
+			$.ajax({
+					type: 'POST',
+					url: "/echetra/resource/message",
+					data: form_data,
+					cache: false,
+					processData: false,
+					contentType: false,
+					success: function (data) {
+						socketio.emit("message", data);
+						$("#reset").click();
+					}
+				});
+		})
+
+		createMessage = function (sender, message) {
+
+			const div = $(`
+				<div class="just-message" id="${message.id}">
+						<div class="just-message-profile">
+							<div class="just-message-profile-id"></div>
+						</div>
+						<div class="just-message-detante">
+							<span class="just-message-username">${sender.username}<i>${message.created_at}</i></span>
+							<span class="just-message-message">${message.message}</span>
+						</div>
+					</div>
+					`);
+			$('.message-main-message').append(div) 
+		}
+
+		socketio.on('main_message', function (data) {
+			createMessage(data.sender, data.message);
+			scrollDown(`#${data.message.id}`);
+		});
+
+		scrollDown = function (element) {
+			$(".message-main-message").animate({scrollTop: $(element).offset().top}, 50);
+		}
+
+		$(window).on('load', function () {
+			const height = $(".message-main-message").height();
+			$(".message-main-message").animate({scrollTop: height}, 50);
+		})
+
+	});
+</script>
+{% endblock%}

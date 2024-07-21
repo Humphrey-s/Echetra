@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, session, jsonify, make_response, request
+from flask import Flask, session, jsonify, make_response, request, abort
 from api.v1.pages import app_pages
 from datetime import datetime
 from models import storage
@@ -40,6 +40,7 @@ def create_task():
 
     instance = Task(**dct)
     instance.save()
+    storage.reload()
     return jsonify(instance.to_dict())
 
 @app_pages.route("/updateTask/<task_id>", methods=["PUT"], strict_slashes=False)
@@ -60,4 +61,5 @@ def  update_task(task_id):
         if key not in ignore:
             setattr(obj, key, value)
     storage.save()
+    storage.reload()
     return make_response(jsonify(obj.to_dict())), 200

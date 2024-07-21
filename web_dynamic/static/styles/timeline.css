@@ -1,115 +1,227 @@
-#Sall2:hover, #Sall:hover {
-	color: #f0f8ff;
+.home_timeline {
+	display: flex;
+	flex-direction: column;
+	background-color: #000039;
 }
 
-.timeline {
-font-family: Sans-serif;
-position: absolute;top: 25px;right: 0px;left: 980px;
-position: fixed;height: 100%;z-index: 22;
-background-color: #253529;box-shadow: 0px 0px 3px 0px #253529;border: None;
-}
-
-.notification {
-	position: absolute;
-	top: 270px;
+.home-timeline-btn {
+	display: flex;
+	flex-direction: row;
+	justify-content: end;
+	box-sizing: border-box;
+	padding-right: 20px;
 	width: 100%;
+	height: 7%;
+	/*border: 1px solid grey;*/
 }
 
-.notification h3 {
-	position: relative;
-	top: 6px;
-	font-size: 12px;
-        left: 14px;
-        color: grey;
-}
-
-
-#stats {
-	position: absolute;
-	top: 50px;
-	font-size: 12px;
-	left: 14px;
-	color: grey;
-}
-
-#suggested {
-	position: absolute;
-        top: 194px;
-        font-size: 12px;
-        left: 14px;
-        color: grey;
-}
-
-#Sall {
-	position: absolute;
-	top: 190px;
-	font-size: 12px;
-	right: 10px;
-	color: grey;
-}
-#Sall2 {
-	position: absolute;
-        top: 0px;
-        font-size: 12px;
-        right: 10px;
-        color: grey;
-}
-
-.createP {
-	position: absolute;
-	width: 130px;
-	height: 30px;
-	border: None;
-	border-radius: 5px;
-	background-color: #568203;
+.home-timeline-btn .createbtn {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
 	text-align: center;
-	line-height: 9px;
-	top: 10px;
-	font-family: Sans-serif;
-	box-shadow: 0px 0px 3px 0px;
-	left: 5px;
-	font-size: 9px;
-}
-
-.createP h2 {
-	position: absolute;
-	left: 28px;
-}
-.createP i {
-	position: absolute;
-	left: 8px;
-	top: 15px;
-}
-
-.month {
-	position: absolute;
-	left: 12px;
-	top: 90px;
-	border-radius: 15px;
-	width: 130px;
-	background-color: #2f4f4f;
+	margin-top: 7px;
+	margin-left: 10px;
+	padding-left: 10px;
+	width: 150px;
 	height: 40px;
-	border: None;
+	color: white;
+	border: none;
+	border-radius: 7px;
+	background: linear-gradient(70.6deg, rgb(172, 30, 255) 0.3%, rgb(65, 35, 251) 55.8%, rgb(35, 251, 224) 105.1%);
 }
 
-.stars {
-        position: absolute;
-        left: 160px;
-        top: 90px;
-        border-radius: 15px;
-        width: 100px;
-        background-color: #2f4f4f;
-        height: 40px;
-        border: None;
+.home-timeline-btn .createbtn  h2 {
+	font-family: Sans-serif;
+	font-size: 14px;
 }
 
-.finished {
-	position: absolute;
-        left: 12px;
-        top: 150px;
-        border-radius: 15px;
-        width: 230px;
-        background-color: #2f4f4f;
-        height: 40px;
-        border: None;
+.home-timeline-btn .createbtn i {
 }
+
+.home-timeline-detantes {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 93%;
+	/*margin-left: 8px;*/
+}
+
+.home-timeline-detantes .timeline-stats {
+	/*position: relative;*/
+	display: flex;
+	flex-direction: row;
+	line-height: 3px;
+	width: 100%;
+	height: 20%;
+	margin-left: 5px;
+} 
+
+.stats-left-column {
+	display: flex;
+	flex-direction: column;
+	align-self: flex-start;
+	padding-left: 10px;
+	width: 50%;
+	gap: 10px;
+	height: 100%;
+}
+
+.stats-right-column {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding-top: 5px;
+	width: 50%;
+	gap: 10px;
+	height: 100%;
+}
+
+.stats-title {
+	width: 290px;
+	height: 20px;
+	font-size: 13px;
+	color: #a9a9a9;
+	margin-bottom: 7px;
+	font-family: sans-serif;
+}
+
+.stats-months {
+	width: 120px;
+	height: 30px;
+	border: 1px solid grey;
+	border-radius: 10px;
+}
+.stats-projects {
+	width: 120px;
+	height: 30px;
+	border: 1px solid grey;
+	border-radius: 10px;
+}
+
+.stats-collaboration {
+	margin-top: 30px;
+	width: 120px;
+	height: 30px;
+	border: 1px solid grey;
+	border-radius: 10px;
+}
+
+.stats-grading {
+	width: 120px;
+	height: 30px;
+	border: 1px solid grey;
+	border-radius: 10px;
+}
+
+/*Below statistics*/
+.timeline-suggestions {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 80%;
+	color: #a9a9a9;
+}
+
+#timeline-suggested-friends {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: auto;
+	gap: 5px;
+	padding-left: 10px;
+	min-height: 30px;
+	/*border: 1px solid grey;*/
+}
+
+#timeline-suggested-friends h3 {
+	font-size: 13px;
+	color: #a9a9a9;
+	margin-top: 7px;
+	margin-left: 10px;
+	margin-bottom: 3px;
+}
+
+#timeline-suggested-friends span {
+	font-size: 10px;
+	font-family: sans-serif;
+	box-sizing: border-box;
+	margin-bottom: 4px;
+}
+
+#timeline-notifications {
+	width: 100%;
+	height: auto;
+	margin-top: 15px;
+
+	padding-left: 20px;
+	min-height: 30px;
+	box-sizing: border-box;
+}
+
+#timeline-notifications h3 {
+	margin: 0px;
+	font-size: 13px;
+	padding-left: 0px;
+	font-family: sans-serif;
+	margin-bottom: 3px;
+}
+
+.suggf {
+	display: flex;
+	flex-direction: row;
+	gap:10px;
+	cursor: pointer;
+	width: 270px;
+	height: 45px;
+	box-sizing: border-box;
+	padding-left: 15px;
+	border-radius: 7px;
+}
+
+.suggf-profile {
+	width: 33px;
+	height: 33px;
+	margin-top: 4px;
+	border: 1px solid grey;
+	border-radius: 50%;
+}
+
+.suggf-name {
+	margin-top: 2px;
+	line-height: 40px;
+	height: auto;
+	min-width: 100px;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
+	font-family: sans-serif;
+}
+
+.suggf-add-friend {
+	display: flex;
+	flex-direction: row;
+	box-sizing: border-box;
+	align-items: center;
+	font-size: 13px;
+	font-family: sans-serif;
+	font-weight: bold;
+	cursor: pointer;
+	color: white;
+	gap: 5px;
+	outline: none;
+	background-color: #5218fa;
+	margin-top: 7px;
+	justify-self: end;
+	margin-left: 23px;
+	border: none;
+	width: 60px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+.suggf:hover {
+	background-color: RGB(19, 31, 82, 0.4);
+}
+

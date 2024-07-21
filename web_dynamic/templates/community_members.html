@@ -1,0 +1,147 @@
+{% extends 'base_community.html' %} {% block content %}
+
+
+<div class="members-search">
+	<div id="members-search-left">
+		<i class="fa-solid fa-magnifying-glass" style="color: #a7a8a9;"></i>
+		<input id="members-search-bar" type="search" placeholder="Search"></input>
+	</div>
+	<div id="members-search-center">
+		<span id="members-total">Members ({{no_users}})</span>
+	</div>
+	<div id="members-search-right" style="color: white;">
+		<div id="members-profile">
+			{{username[0:2].upper()}}
+		</div>
+		<div id="members-message">
+			<i class="fa-regular fa-comment" style="color: #616365;"></i>
+		</div>
+		<div id="members-notification">
+			<i class="fa-regular fa-bell 2xl"></i>
+		</div>
+	</div>
+</div>
+<div id="card-container">
+</div>
+<div id="card-form">
+	<h3>Profile</h3>
+	<div id="card-form-detante">
+		<div id="card-form-detante-upper">
+			<div id="card-form-detante-profile">
+			</div>
+			<div id="card-user-main">
+				<span class="card-user-Name"></span>
+				<div class="card-user-contact">
+					<button id="card-user-Name">
+						<i class="fa-regular fa-message" style="font-size: 16px;"></i>
+						<span><a id="message-link" href="">Message</a></span>
+					</button>
+					<div id="card-user-link-copy">
+						<i class="fa-solid fa-link"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="card-form-detante-lower">
+			<span style="color: black;">About<div class="span-tapped" id="tapped-about" style="background-color: black;"></div></span>
+			<span>Posts<div class="span-tapped" id="tapped-post"></div></span>
+			<span>Projects<div class="span-tapped" id="tapped-project"></div></span>
+			<span>Comments<div class="span-tapped" id="tapped-comment"></div></span>
+			<span>Community<div class="span-tapped" id="tapped-community"></div></span>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$.get("http://localhost:5001/users", (data, status) => {
+			const cardLimit = data.length;
+			const cardIncrease = 6;
+
+			const pageCount = Math.ceil(cardLimit / cardIncrease);
+			let currentPage = 1;
+
+			const getRandomColor = () => {
+  				const h = Math.floor(Math.random() * 360);
+  				return `hsl(${h}deg, 90%, 85%)`;
+				};
+
+			const createCard = (user) => {
+
+				if (user) {
+					const card = $(
+						`
+						<div class="card">
+							<div class="card-upper" style="background-color: ${getRandomColor()};">
+								<a class="card-link" href="http://localhost:5001/users/${user.id}?{{cache_id}}"></a>
+							</div>
+							<div class="card-lower" style="color: white;">
+								${user.username}
+							</div>
+						</div>
+					`);
+					$("#card-container").append(card)
+				}
+			}
+
+			const addCards = (pageIndex) => {
+				currentPage = pageIndex;
+
+				const startRange = (pageIndex - 1) * cardIncrease;
+				const endRange = currentPage == pageCount ? cardLimit : pageIndex * cardIncrease;
+
+				for (let i = startRange; i <= endRange; i++) {
+					
+					createCard(data[i]);
+				}
+			}
+
+			$("#card-form").css("background-color", getRandomColor());
+			data.forEach(function (user) {
+				createCard(user);
+			});
+
+		});
+
+
+
+		$("#card-container").on('click', '.card', function  (event) {
+				event.preventDefault();
+
+				Nurl = $(this).children().children('a').attr('href');
+
+				$.get(Nurl, function (data, status) {
+					$(".card-user-Name").html(data.username);
+					$("#message-link").attr({"href": `/Echetra/community/message/${data.id}?{{cache_id}}`});
+				});
+
+				property = $("#card-form").css('right')
+				if (property == '0px') {
+					$("#card-form").css({
+						'transform': '100s right',
+						'right': '-520px'
+					});
+				} else {
+					$("#card-form").css({
+						'transform': '100s right',
+						'right': '0px'
+					});
+				}
+
+
+		});
+
+		$("#card-form-detante-lower").on('click', 'span', function (event) {
+			$('#card-form-detante-lower').find('*').css('color', 'grey');
+			$('#card-form-detante-lower').children().children().css('background-color', 'transparent');
+
+			$(this).css("color", 'black');
+			$(this).children('div').css('background-color', 'black');
+
+		});
+
+
+	});
+
+</script>
+{% endblock %}
